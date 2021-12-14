@@ -1,5 +1,10 @@
-package com.umpaz.farmersrespite;
+package com.chefsdelights.farmersrespite;
 
+import com.chefsdelights.farmersrespite.registry.FRBlocks;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,21 +23,13 @@ import com.umpaz.farmersrespite.setup.ClientEventHandler;
 import com.umpaz.farmersrespite.setup.CommonEventHandler;
 import com.umpaz.farmersrespite.setup.FRConfiguration;
 
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-@Mod(FarmersRespite.MODID)
-@Mod.EventBusSubscriber(modid = FarmersRespite.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class FarmersRespite
 {
-	public static final String MODID = "farmersrespite";
-	public static final FRItemGroup ITEM_GROUP = new FRItemGroup(FarmersRespite.MODID);
+	public static final String MOD_ID = "farmersrespite";
+	public static final ItemGroup GROUP = FabricItemGroupBuilder.create(
+					new Identifier(MOD_ID, "group"))
+			.icon(() -> new ItemStack(FRBlocks.KETTLE))
+			.build();
 
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final Gson GSON = new GsonBuilder().setPrettyPrinting()

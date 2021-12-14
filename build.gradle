@@ -15,19 +15,25 @@ version = System.env.GITHUB_ACTIONS == "true"
         ? "${project.mod_version}+build.${System.env.GITHUB_RUN_NUMBER}"
         : project.mod_version
 
+static String terraformers() {
+    def url = "https://maven.terraformersmc.com/"
+    def conn = new URL(url).openConnection()
+    conn.connect()
+    url = conn.getResponseCode() == 521 ? "https://maven.kotlindiscord.com/repository/terraformers/" : url
+    return url
+}
+
 repositories {
     maven {
         name = "Modrinth"
         url  = "https://api.modrinth.com/maven/"
     }
-
     maven {
-        name = "Terraformers Maven"
-        url  = "https://maven.terraformersmc.com/releases/"
+        name = 'Shedaniel Maven'
+        url "https://maven.shedaniel.me/"
     }
     maven {
-        name = "Terraformers Backup Maven"
-        url  = "https://maven.terraformersmc.com/releases/"
+        url = terraformers()
     }
 }
 
@@ -39,6 +45,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
     modImplementation "maven.modrinth:sodium:${project.sodium_version}"
+
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:7.0.352"
+    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:7.0.352"
 }
 
 loom {
