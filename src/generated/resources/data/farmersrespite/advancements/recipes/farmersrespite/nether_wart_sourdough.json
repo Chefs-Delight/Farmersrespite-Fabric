@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farmersrespite:nether_wart_sourdough"
+    ]
+  },
+  "criteria": {
+    "has_wart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:nether_wart"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farmersrespite:nether_wart_sourdough"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wart",
+      "has_the_recipe"
+    ]
+  ]
+}

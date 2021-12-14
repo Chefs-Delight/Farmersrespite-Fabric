@@ -1,0 +1,8 @@
+{
+	"block.kettle.whistle": {
+    "subtitle": "farmersrespite.subtitles.kettle.whistle",
+    "sounds": [
+      "farmersrespite:block/kettle/whistle"
+    ]
+  }
+}

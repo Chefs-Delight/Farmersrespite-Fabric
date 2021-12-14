@@ -1,0 +1,17 @@
+{
+  "type": "farmersrespite:brewing",
+  "ingredients": [
+    {
+      "item": "farmersrespite:rose_hips"
+    },
+    {
+      "item": "farmersrespite:rose_hips"
+    }
+  ],
+  "result": {
+    "item": "farmersrespite:rose_hip_tea"
+  },
+  "experience": 0.35,
+  "brewingtime": 300,
+  "needWater": true
+}

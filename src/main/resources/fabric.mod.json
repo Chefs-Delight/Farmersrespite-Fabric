@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+
+  "id": "farmersrespite",
+  "version": "${version}",
+  "license": "MIT",
+
+  "name": "Farmer's Respite",
+  "icon": "assets/farmersrespite/icon.png",
+  "description": "An addon created by Umpaz, HoboJoe, and SoyTutta for the Farmer's Delight mod by vectorwing. Attempts to add tea and ways to brew it, as well as some other foods!",
+
+  "authors": [
+    "StevenPlayzz",
+    "JustinPlayzz",
+    "Umpaz",
+    "HoboJoe",
+    "SoyTutta"
+  ],
+
+  "contact": {
+    "homepage": "",
+    "sources": "",
+    "issues": ""
+  },
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.chefsdelight.farmersrespite.FarmersRespite"
+    ]
+  },
+  "mixins": [],
+  "accessWidener": "farmersrespite.accesswidener",
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+
+  "custom": {
+    "modmenu": {
+      "badges": [],
+      "links": {
+        "mod.example.contact.discord": "https://discord.gg/eRdBB86Nr7"
+      }
+    }
+  }
+}

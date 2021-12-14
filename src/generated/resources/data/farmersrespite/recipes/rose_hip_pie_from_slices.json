@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "farmersrespite:rose_hip_pie_slice"
+    }
+  },
+  "result": {
+    "item": "farmersrespite:rose_hip_pie"
+  }
+}

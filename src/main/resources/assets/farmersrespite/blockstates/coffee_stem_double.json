@@ -1,0 +1,139 @@
+{
+  "variants": {
+    "facing=east,age=0,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double00",
+      "y": 90
+    },
+    "facing=east,age=0,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double01",
+      "y": 90
+    },
+    "facing=east,age=0,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double02",
+      "y": 90
+    },
+    "facing=east,age=1,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double10",
+      "y": 90
+    },
+    "facing=east,age=1,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double11",
+      "y": 90
+    },
+    "facing=east,age=1,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double12",
+      "y": 90
+    },
+    "facing=east,age=2,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double20",
+      "y": 90
+    },
+    "facing=east,age=2,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double21",
+      "y": 90
+    },
+    "facing=east,age=2,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double22",
+      "y": 90
+    },
+    "facing=north,age=0,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double00"
+    },
+    "facing=north,age=0,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double01"
+    },
+    "facing=north,age=0,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double02"
+    },
+    "facing=north,age=1,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double10"
+    },
+    "facing=north,age=1,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double11"
+    },
+    "facing=north,age=1,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double12"
+    },
+    "facing=north,age=2,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double20"
+    },
+    "facing=north,age=2,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double21"
+    },
+    "facing=north,age=2,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double22"
+    },
+    "facing=south,age=0,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double00",
+      "y": 180
+    },
+    "facing=south,age=0,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double01",
+      "y": 180
+    },
+    "facing=south,age=0,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double02",
+      "y": 180
+    },
+    "facing=south,age=1,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double10",
+      "y": 180
+    },
+    "facing=south,age=1,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double11",
+      "y": 180
+    },
+    "facing=south,age=1,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double12",
+      "y": 180
+    },
+    "facing=south,age=2,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double20",
+      "y": 180
+    },
+    "facing=south,age=2,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double21",
+      "y": 180
+    },
+    "facing=south,age=2,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double22",
+      "y": 180
+    },
+    "facing=west,age=0,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double00",
+      "y": 270
+    },
+    "facing=west,age=0,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double01",
+      "y": 270
+    },
+    "facing=west,age=0,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double02",
+      "y": 270
+    },
+    "facing=west,age=1,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double10",
+      "y": 270
+    },
+    "facing=west,age=1,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double11",
+      "y": 270
+    },
+    "facing=west,age=1,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double12",
+      "y": 270
+    },
+    "facing=west,age=2,age1=0": {
+      "model": "farmersrespite:block/coffee_stem_double20",
+      "y": 270
+    },
+    "facing=west,age=2,age1=1": {
+      "model": "farmersrespite:block/coffee_stem_double21",
+      "y": 270
+    },
+    "facing=west,age=2,age1=2": {
+      "model": "farmersrespite:block/coffee_stem_double22",
+      "y": 270
+    }
+  }
+}

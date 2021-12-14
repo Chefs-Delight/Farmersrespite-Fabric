@@ -1,0 +1,17 @@
+{
+  "type": "farmersrespite:brewing",
+  "ingredients": [
+    {
+      "item": "minecraft:dandelion"
+    },
+    {
+      "tag": "farmersrespite:tea_leaves"
+    }
+  ],
+  "result": {
+    "item": "farmersrespite:dandelion_tea"
+  },
+  "experience": 0.35,
+  "brewingtime": 300,
+  "needWater": true
+}

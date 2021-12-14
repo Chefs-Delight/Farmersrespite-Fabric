@@ -1,0 +1,17 @@
+{
+  "type": "farmersrespite:brewing",
+  "ingredients": [
+    {
+      "item": "farmersrespite:green_tea_leaves"
+    },
+    {
+      "item": "farmersrespite:green_tea_leaves"
+    }
+  ],
+  "result": {
+    "item": "farmersrespite:green_tea"
+  },
+  "experience": 0.35,
+  "brewingtime": 300,
+  "needWater": true
+}

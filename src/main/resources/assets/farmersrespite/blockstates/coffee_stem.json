@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,age=0": {
+      "model": "farmersrespite:block/coffee_stem0",
+      "y": 90
+    },
+    "facing=east,age=1": {
+      "model": "farmersrespite:block/coffee_stem1",
+      "y": 90
+    },
+    "facing=east,age=2": {
+      "model": "farmersrespite:block/coffee_stem2",
+      "y": 90
+    },
+    "facing=north,age=0": {
+      "model": "farmersrespite:block/coffee_stem0"
+    },
+    "facing=north,age=1": {
+      "model": "farmersrespite:block/coffee_stem1"
+    },
+    "facing=north,age=2": {
+      "model": "farmersrespite:block/coffee_stem2"
+    },
+    "facing=south,age=0": {
+      "model": "farmersrespite:block/coffee_stem0",
+      "y": 180
+    },
+    "facing=south,age=1": {
+      "model": "farmersrespite:block/coffee_stem1",
+      "y": 180
+    },
+    "facing=south,age=2": {
+      "model": "farmersrespite:block/coffee_stem2",
+      "y": 180
+    },
+    "facing=west,age=0": {
+      "model": "farmersrespite:block/coffee_stem0",
+      "y": 270
+    },
+    "facing=west,age=1": {
+      "model": "farmersrespite:block/coffee_stem1",
+      "y": 270
+    },
+    "facing=west,age=2": {
+      "model": "farmersrespite:block/coffee_stem2",
+      "y": 270
+    }
+  }
+}

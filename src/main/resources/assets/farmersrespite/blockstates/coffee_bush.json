@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "farmersrespite:block/coffee_bush_lower"
+    },
+    "half=upper": {
+      "model": "farmersrespite:block/coffee_bush_upper"
+    }
+  }
+}

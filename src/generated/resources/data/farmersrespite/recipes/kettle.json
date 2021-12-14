@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bSb",
+    "iWi",
+    "iii"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:stick"
+    },
+    "i": {
+      "item": "minecraft:brick"
+    },
+    "S": {
+      "item": "minecraft:leather"
+    },
+    "W": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "farmersrespite:kettle"
+  }
+}

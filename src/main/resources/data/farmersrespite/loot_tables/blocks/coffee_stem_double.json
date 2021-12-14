@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "farmersrespite:coffee_berries"
+        }
+      ],
+       "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "farmersrespite:coffee_stem_double",
+          "properties": {
+            "age": "2"
+          }
+        }
+      ]
+    },
+	{
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "farmersrespite:coffee_berries"
+        }
+      ],
+       "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "farmersrespite:coffee_stem_double",
+          "properties": {
+            "age1": "2"
+          }
+        }
+      ]
+    }
+  ]
+}

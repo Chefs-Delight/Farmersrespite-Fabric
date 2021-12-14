@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    },
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    },
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    },
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    },
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    },
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    },
+    {
+      "item": "farmersrespite:coffee_cake_slice"
+    }
+  ],
+  "result": {
+    "item": "farmersrespite:coffee_cake"
+  }
+}

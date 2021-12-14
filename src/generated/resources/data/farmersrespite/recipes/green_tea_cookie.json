@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bSb"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:wheat"
+    },
+    "S": {
+      "item": "farmersrespite:green_tea_leaves"
+    }
+  },
+  "result": {
+    "item": "farmersrespite:green_tea_cookie",
+    "count": 8
+  }
+}

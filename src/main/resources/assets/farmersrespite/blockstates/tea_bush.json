@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0,half=lower": {
+      "model": "farmersrespite:block/tea_bush_lower_green"
+    },
+    "age=1,half=lower": {
+      "model": "farmersrespite:block/tea_bush_lower_yellow"
+    },
+    "age=2,half=lower": {
+      "model": "farmersrespite:block/tea_bush_lower_brown"
+    },
+    "age=3,half=lower": {
+      "model": "farmersrespite:block/tea_bush_lower_black"
+    },
+    "age=0,half=upper": {
+      "model": "farmersrespite:block/tea_bush_upper_green"
+    },
+    "age=1,half=upper": {
+      "model": "farmersrespite:block/tea_bush_upper_yellow"
+    },
+    "age=2,half=upper": {
+      "model": "farmersrespite:block/tea_bush_upper_brown"
+    },
+    "age=3,half=upper": {
+      "model": "farmersrespite:block/tea_bush_upper_black"
+    }
+  }
+}

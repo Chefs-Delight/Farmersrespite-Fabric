@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+	"name": "berries",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "farmersrespite:coffee_berries"
+        }
+      ],
+       "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "farmersrespite:coffee_stem",
+          "properties": {
+            "age": "2"
+          }
+        }
+      ]
+    }
+  ]
+}

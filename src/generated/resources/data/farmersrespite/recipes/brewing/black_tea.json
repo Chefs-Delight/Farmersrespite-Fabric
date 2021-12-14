@@ -1,0 +1,17 @@
+{
+  "type": "farmersrespite:brewing",
+  "ingredients": [
+    {
+      "item": "farmersrespite:black_tea_leaves"
+    },
+    {
+      "item": "farmersrespite:black_tea_leaves"
+    }
+  ],
+  "result": {
+    "item": "farmersrespite:black_tea"
+  },
+  "experience": 0.35,
+  "brewingtime": 300,
+  "needWater": true
+}

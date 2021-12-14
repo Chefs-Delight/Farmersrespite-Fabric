@@ -1,0 +1,22 @@
+{
+    "textures": {
+        "particle": "farmersrespite:block/coffee_cake_side",
+        "bottom": "farmersrespite:block/coffee_cake_bottom",
+        "top": "farmersrespite:block/coffee_cake_top",
+        "side": "farmersrespite:block/coffee_cake_side",
+        "inside": "farmersrespite:block/coffee_cake_inner"
+    },
+    "elements": [
+        {   "from": [ 9, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

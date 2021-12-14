@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bSb",
+    "xxx",
+    "iWi"
+  ],
+  "key": {
+    "b": {
+      "tag": "forge:milk"
+    },
+    "x": {
+      "item": "farmersrespite:rose_hips"
+    },
+    "i": {
+      "item": "minecraft:sugar"
+    },
+    "S": {
+      "item": "minecraft:honey_bottle"
+    },
+    "W": {
+      "item": "farmersdelight:pie_crust"
+    }
+  },
+  "result": {
+    "item": "farmersrespite:rose_hip_pie"
+  }
+}

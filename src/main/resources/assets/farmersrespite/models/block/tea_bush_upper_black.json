@@ -1,0 +1,9 @@
+{
+	"parent": "farmersrespite:block/tea_bush_upper",
+	"textures": {
+		"particle": "farmersrespite:block/tea_bush_plant_upper_black",
+		"plant": "farmersrespite:block/tea_bush_plant_upper_black",
+		"top": "farmersrespite:block/tea_bush_top_black",
+		"side": "farmersrespite:block/tea_bush_side_black"
+	}
+}
