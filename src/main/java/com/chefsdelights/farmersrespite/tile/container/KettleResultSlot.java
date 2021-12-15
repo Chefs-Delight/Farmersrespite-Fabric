@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.tile.container;
+package com.chefsdelights.farmersrespite.tile.container;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -11,8 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 @ParametersAreNonnullByDefault
-public class KettleResultSlot extends SlotItemHandler
-{
+public class KettleResultSlot extends SlotItemHandler {
 	public final KettleTileEntity tileEntity;
 	private final PlayerEntity player;
 	private int removeCount;

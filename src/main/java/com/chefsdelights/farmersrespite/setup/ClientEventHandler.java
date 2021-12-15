@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.setup;
+package com.chefsdelights.farmersrespite.setup;
 
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.client.gui.KettleScreen;
@@ -19,8 +19,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import vectorwing.farmersdelight.utils.ModAtlases;
 
 @Mod.EventBusSubscriber(modid = FarmersRespite.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ClientEventHandler
-{
+public class ClientEventHandler {
 	public static final ResourceLocation EMPTY_CONTAINER_SLOT_BOTTLE = new ResourceLocation(FarmersRespite.MODID, "item/empty_container_slot_bottle");
 
 	@SubscribeEvent

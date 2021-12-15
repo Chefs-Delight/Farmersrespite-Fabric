@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.tile;
+package com.chefsdelights.farmersrespite.tile;
 
 import java.util.Optional;
 
@@ -50,8 +50,7 @@ import vectorwing.farmersdelight.utils.ItemUtils;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class KettleTileEntity extends FDSyncedTileEntity implements INamedContainerProvider, ITickableTileEntity, IHeatableTileEntity, INameable
-{
+public class KettleTileEntity extends FDSyncedTileEntity implements INamedContainerProvider, ITickableTileEntity, IHeatableTileEntity, INameable {
 	public static final int MEAL_DISPLAY_SLOT = 2;
 	public static final int CONTAINER_SLOT = 3;
 	public static final int OUTPUT_SLOT = 4;

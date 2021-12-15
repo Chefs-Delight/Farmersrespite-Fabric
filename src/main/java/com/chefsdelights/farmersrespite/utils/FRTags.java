@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.utils;
+package com.chefsdelights.farmersrespite.utils;
 
 import com.umpaz.farmersrespite.FarmersRespite;
 

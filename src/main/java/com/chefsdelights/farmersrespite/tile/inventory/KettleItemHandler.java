@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.tile.inventory;
+package com.chefsdelights.farmersrespite.tile.inventory;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
@@ -7,8 +7,7 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class KettleItemHandler implements IItemHandler
-{
+public class KettleItemHandler implements IItemHandler {
 	private static final int SLOTS_INPUT = 2;
 	private static final int SLOT_CONTAINER_INPUT = 3;
 	private static final int SLOT_MEAL_OUTPUT = 4;

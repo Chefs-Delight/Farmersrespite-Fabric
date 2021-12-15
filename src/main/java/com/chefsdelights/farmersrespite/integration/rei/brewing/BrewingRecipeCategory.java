@@ -1,4 +1,4 @@
-package com.chefsdelights.farmersrespite.integration.jei.brewing;
+package com.chefsdelights.farmersrespite.integration.rei.brewing;
 
 import java.util.ArrayList;
 import java.util.Arrays;

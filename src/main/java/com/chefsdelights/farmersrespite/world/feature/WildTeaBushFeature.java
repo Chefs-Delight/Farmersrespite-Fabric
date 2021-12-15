@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.world.feature;
+package com.chefsdelights.farmersrespite.world.feature;
 
 import java.util.Random;
 

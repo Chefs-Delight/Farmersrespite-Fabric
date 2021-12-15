@@ -1,6 +1,8 @@
 package com.chefsdelights.farmersrespite;
 
 import com.chefsdelights.farmersrespite.registry.FRBlocks;
+import com.chefsdelights.farmersrespite.setup.ClientEventHandler;
+import com.chefsdelights.farmersrespite.setup.CommonEventHandler;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -10,10 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.umpaz.farmersrespite.crafting.KettleRecipe;
-import com.umpaz.farmersrespite.setup.ClientEventHandler;
-import com.umpaz.farmersrespite.setup.CommonEventHandler;
-import com.umpaz.farmersrespite.setup.FRConfiguration;
 
 public class FarmersRespite {
 	public static final String MOD_ID = "farmersrespite";
@@ -36,15 +34,6 @@ public class FarmersRespite {
 
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FRConfiguration.COMMON_CONFIG);
-		
-		FRItems.ITEMS.register(modEventBus);
-		FRBlocks.BLOCKS.register(modEventBus);
-		FREffects.EFFECTS.register(modEventBus);
-		FRFeatures.FEATURES.register(modEventBus);
-		FRTileEntityTypes.TILES.register(modEventBus);
-		FRSounds.SOUNDS.register(modEventBus);
-		FRContainerTypes.CONTAINER_TYPES.register(modEventBus);
-		FRRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

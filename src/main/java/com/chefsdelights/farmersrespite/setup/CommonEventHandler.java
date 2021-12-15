@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.setup;
+package com.chefsdelights.farmersrespite.setup;
 
 import java.util.List;
 import java.util.Random;
@@ -26,8 +26,7 @@ import vectorwing.farmersdelight.setup.Configuration;
 
 @Mod.EventBusSubscriber(modid = FarmersRespite.MODID)
 @ParametersAreNonnullByDefault
-public class CommonEventHandler
-{
+public class CommonEventHandler {
 	public static void init(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			registerCompostables();

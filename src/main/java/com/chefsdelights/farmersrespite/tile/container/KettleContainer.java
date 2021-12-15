@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.tile.container;
+package com.chefsdelights.farmersrespite.tile.container;
 
 import java.util.Objects;
 
@@ -28,8 +28,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class KettleContainer extends Container
-{
+public class KettleContainer extends Container {
 	public static final ResourceLocation EMPTY_CONTAINER_SLOT_BOTTLE = new ResourceLocation(FarmersRespite.MODID, "item/empty_container_slot_bottle");
 
 	public final KettleTileEntity tileEntity;

@@ -1,16 +1,7 @@
 package com.chefsdelights.farmersrespite.registry;
 
+import com.chefsdelights.farmersrespite.blocks.*;
 import com.nhoryzon.mc.farmersdelight.block.PieBlock;
-import com.umpaz.farmersrespite.blocks.CoffeeBushBlock;
-import com.umpaz.farmersrespite.blocks.CoffeeBushTopBlock;
-import com.umpaz.farmersrespite.blocks.CoffeeCakeBlock;
-import com.umpaz.farmersrespite.blocks.CoffeeDoubleStemBlock;
-import com.umpaz.farmersrespite.blocks.CoffeeMiddleStemBlock;
-import com.umpaz.farmersrespite.blocks.CoffeeStemBlock;
-import com.umpaz.farmersrespite.blocks.KettleBlock;
-import com.umpaz.farmersrespite.blocks.SmallTeaBushBlock;
-import com.umpaz.farmersrespite.blocks.TeaBushBlock;
-import com.umpaz.farmersrespite.blocks.WildTeaBushBlock;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffectCategory;

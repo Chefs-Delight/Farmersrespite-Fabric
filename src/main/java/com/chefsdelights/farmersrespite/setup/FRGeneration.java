@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.setup;
+package com.chefsdelights.farmersrespite.setup;
 
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.registry.FRFeatures;

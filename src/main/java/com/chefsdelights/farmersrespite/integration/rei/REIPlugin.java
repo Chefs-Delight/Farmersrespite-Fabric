@@ -1,4 +1,4 @@
-package com.chefsdelights.farmersrespite.integration.jei;
+package com.chefsdelights.farmersrespite.integration.rei;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +30,7 @@ import net.minecraft.util.ResourceLocation;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @SuppressWarnings("unused")
-public class JEIPlugin implements IModPlugin {
+public class REIPlugin implements IModPlugin {
 	private static final ResourceLocation ID = new ResourceLocation(FarmersRespite.MODID, "jei_plugin");
 	private static final Minecraft MC = Minecraft.getInstance();
 

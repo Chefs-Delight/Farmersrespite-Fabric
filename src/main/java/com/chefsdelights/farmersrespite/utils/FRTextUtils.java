@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.utils;
+package com.chefsdelights.farmersrespite.utils;
 
 import java.util.List;
 import java.util.Map;
@@ -26,8 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Util for obtaining and formatting ITextComponents for use across the mod.
  */
 
-public class FRTextUtils
-{
+public class FRTextUtils {
 	private static final IFormattableTextComponent NO_EFFECTS = (new TranslationTextComponent("effect.none")).withStyle(TextFormatting.GRAY);
 
 	/**
