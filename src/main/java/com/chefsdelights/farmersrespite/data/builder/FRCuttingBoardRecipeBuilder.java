@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data.builder;
+package com.chefsdelights.farmersrespite.data.builder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,7 @@ import vectorwing.farmersdelight.crafting.ingredients.ChanceResult;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class FRCuttingBoardRecipeBuilder
-{
+public class FRCuttingBoardRecipeBuilder {
 	private final List<ChanceResult> results = new ArrayList<>(4);
 	private final Ingredient ingredient;
 	private final Ingredient tool;

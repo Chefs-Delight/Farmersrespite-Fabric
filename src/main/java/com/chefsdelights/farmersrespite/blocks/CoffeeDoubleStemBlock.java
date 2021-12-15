@@ -1,13 +1,11 @@
-package com.umpaz.farmersrespite.blocks;
+package com.chefsdelights.farmersrespite.blocks;
 
 import java.util.Random;
 
 import com.umpaz.farmersrespite.registry.FRItems;
 import com.umpaz.farmersrespite.setup.FRConfiguration;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IGrowable;
@@ -32,7 +30,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 
-public class CoffeeDoubleStemBlock extends BushBlock implements IGrowable { 
+public class CoffeeDoubleStemBlock extends PlantBlock implements Fertilizable {
 	   public static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 
 	   public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
@@ -40,8 +38,8 @@ public class CoffeeDoubleStemBlock extends BushBlock implements IGrowable {
 	   public static final DirectionProperty FACING = HorizontalBlock.FACING;
 
 
-	   public CoffeeDoubleStemBlock(Properties properties) {
-	      super(properties);
+	   public CoffeeDoubleStemBlock(Settings settings) {
+	      super(settings);
 	      this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(AGE1, Integer.valueOf(0)).setValue(FACING, Direction.NORTH));
 	   }
 

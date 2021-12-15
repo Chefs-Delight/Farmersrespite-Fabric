@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data.recipes;
+package com.chefsdelights.farmersrespite.data.recipes;
 
 import java.util.function.Consumer;
 
@@ -10,8 +10,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Items;
 import vectorwing.farmersdelight.registry.ModItems;
 
-public class BrewingRecipes
-{
+public class BrewingRecipes {
 	public static final int FAST_COOKING = 200;
 	public static final int NORMAL_COOKING = 300;
 	public static final int SLOW_COOKING = 400;

@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data;
+package com.chefsdelights.farmersrespite.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -9,8 +9,7 @@ import com.umpaz.farmersrespite.FarmersRespite;
 
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = FarmersRespite.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class DataGenerators
-{
+public class DataGenerators {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();

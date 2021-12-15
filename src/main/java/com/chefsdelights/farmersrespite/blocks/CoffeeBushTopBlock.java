@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.blocks;
+package com.chefsdelights.farmersrespite.blocks;
 
 import java.util.Random;
 
@@ -8,9 +8,7 @@ import com.umpaz.farmersrespite.registry.FRBlocks;
 import com.umpaz.farmersrespite.registry.FRItems;
 import com.umpaz.farmersrespite.setup.FRConfiguration;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +32,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 
-public class CoffeeBushTopBlock extends BushBlock implements IGrowable { 
+public class CoffeeBushTopBlock extends PlantBlock implements Fertilizable {
 	   public static final IntegerProperty AGE = BlockStateProperties.AGE_1;
 	   public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
@@ -42,8 +40,8 @@ public class CoffeeBushTopBlock extends BushBlock implements IGrowable {
 	   private static final VoxelShape SHAPE_UPPER = VoxelShapes.or(Block.box(0.0D, -10.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(5.0D, -16.0D, 5.0D, 11.0D, -10.0D, 11.0D));
 
 
-	   public CoffeeBushTopBlock(Properties properties) {
-	      super(properties);
+	   public CoffeeBushTopBlock(Settings settings) {
+	      super(settings);
 	      this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(HALF, DoubleBlockHalf.LOWER));
 	   }
 

@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.crafting;
+package com.chefsdelights.farmersrespite.crafting;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -25,8 +25,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class KettleRecipe implements IRecipe<RecipeWrapper>
-{
+public class KettleRecipe implements IRecipe<RecipeWrapper> {
 	public static IRecipeType<KettleRecipe> TYPE = IRecipeType.register(FarmersRespite.MODID + ":brewing");
 	public static final Serializer SERIALIZER = new Serializer();
 	public static final int INPUT_SLOTS = 2;

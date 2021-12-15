@@ -11,20 +11,11 @@ import org.apache.logging.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.umpaz.farmersrespite.crafting.KettleRecipe;
-import com.umpaz.farmersrespite.registry.FRBlocks;
-import com.umpaz.farmersrespite.registry.FRContainerTypes;
-import com.umpaz.farmersrespite.registry.FREffects;
-import com.umpaz.farmersrespite.registry.FRFeatures;
-import com.umpaz.farmersrespite.registry.FRItems;
-import com.umpaz.farmersrespite.registry.FRRecipeSerializers;
-import com.umpaz.farmersrespite.registry.FRSounds;
-import com.umpaz.farmersrespite.registry.FRTileEntityTypes;
 import com.umpaz.farmersrespite.setup.ClientEventHandler;
 import com.umpaz.farmersrespite.setup.CommonEventHandler;
 import com.umpaz.farmersrespite.setup.FRConfiguration;
 
-public class FarmersRespite
-{
+public class FarmersRespite {
 	public static final String MOD_ID = "farmersrespite";
 	public static final ItemGroup GROUP = FabricItemGroupBuilder.create(
 					new Identifier(MOD_ID, "group"))

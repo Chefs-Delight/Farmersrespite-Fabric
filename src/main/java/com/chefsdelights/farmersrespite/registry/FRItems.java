@@ -1,24 +1,10 @@
-package com.umpaz.farmersrespite.registry;
-
-import com.umpaz.farmersrespite.FarmersRespite;
-import com.umpaz.farmersrespite.items.PurulentTeaItem;
+package com.chefsdelights.farmersrespite.registry;
 
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import vectorwing.farmersdelight.items.ConsumableItem;
-import vectorwing.farmersdelight.items.drinks.DrinkItem;
-import vectorwing.farmersdelight.registry.ModEffects;
 
-public class FRItems
-{
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, FarmersRespite.MODID);
+public class FRItems {
 
 	public static final RegistryObject<Item> KETTLE = ITEMS.register("kettle",
 			() -> new BlockItem(FRBlocks.KETTLE.get(), new Item.Properties().stacksTo(1).tab(FarmersRespite.ITEM_GROUP)));

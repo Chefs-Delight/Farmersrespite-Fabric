@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data;
+package com.chefsdelights.farmersrespite.data;
 
 import java.util.function.Consumer;
 
@@ -24,8 +24,7 @@ import vectorwing.farmersdelight.utils.tags.ForgeTags;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class Recipes extends RecipeProvider
-{
+public class Recipes extends RecipeProvider {
 	public Recipes(DataGenerator generator) {
 		super(generator);
 	}

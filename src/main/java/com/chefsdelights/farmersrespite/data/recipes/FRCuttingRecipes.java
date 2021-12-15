@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data.recipes;
+package com.chefsdelights.farmersrespite.data.recipes;
 
 import java.util.function.Consumer;
 

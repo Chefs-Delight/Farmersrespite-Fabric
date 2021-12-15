@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.umpaz.farmersrespite.crafting;
+package com.chefsdelights.farmersrespite.crafting;
 
 import mcp.MethodsReturnNonnullByDefault;
 

@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.integration.jei.brewing;
+package com.chefsdelights.farmersrespite.integration.jei.brewing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,8 +28,7 @@ import net.minecraft.util.ResourceLocation;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BrewingRecipeCategory implements IRecipeCategory<KettleRecipe>
-{
+public class BrewingRecipeCategory implements IRecipeCategory<KettleRecipe> {
 	public static final ResourceLocation UID = new ResourceLocation(FarmersRespite.MODID, "brewing");
 	protected final IDrawable heatIndicator;
 	protected final IDrawable waterBar;

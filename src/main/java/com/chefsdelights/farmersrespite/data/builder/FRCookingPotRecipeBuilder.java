@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data.builder;
+package com.chefsdelights.farmersrespite.data.builder;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -24,8 +24,7 @@ import vectorwing.farmersdelight.crafting.CookingPotRecipe;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class FRCookingPotRecipeBuilder
-{
+public class FRCookingPotRecipeBuilder {
 	private final List<Ingredient> ingredients = Lists.newArrayList();
 	private final Item result;
 	private final int count;

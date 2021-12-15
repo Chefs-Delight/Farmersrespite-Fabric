@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.effects;
+package com.chefsdelights.farmersrespite.effects;
 
 import java.util.Set;
 

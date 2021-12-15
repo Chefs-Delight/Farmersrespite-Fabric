@@ -33,6 +33,10 @@ repositories {
         url "https://maven.shedaniel.me/"
     }
     maven {
+        name = 'Curse Maven'
+        url = "https://www.cursemaven.com"
+    }
+    maven {
         url = terraformers()
     }
 }
@@ -45,6 +49,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
     modImplementation "maven.modrinth:sodium:${project.sodium_version}"
+    modCompileOnly "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
+    modRuntime "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
 
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:7.0.352"
     modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:7.0.352"

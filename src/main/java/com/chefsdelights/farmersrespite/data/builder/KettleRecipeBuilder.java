@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.data.builder;
+package com.chefsdelights.farmersrespite.data.builder;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -24,8 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class KettleRecipeBuilder
-{
+public class KettleRecipeBuilder {
 	private final List<Ingredient> ingredients = Lists.newArrayList();
 	private final Item result;
 	private final int count;

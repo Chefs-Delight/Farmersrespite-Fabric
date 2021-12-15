@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.loot;
+package com.chefsdelights.farmersrespite.loot;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -22,8 +22,7 @@ import vectorwing.farmersdelight.loot.functions.CopyMealFunction;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class KettleCopyDrinkFunction extends LootFunction
-{
+public class KettleCopyDrinkFunction extends LootFunction {
 	public static final ResourceLocation ID = new ResourceLocation(FarmersRespite.MODID, "copy_drink");
 
 	private KettleCopyDrinkFunction(ILootCondition[] conditions) {

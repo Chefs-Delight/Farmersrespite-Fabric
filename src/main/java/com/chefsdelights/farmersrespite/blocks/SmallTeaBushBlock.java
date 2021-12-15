@@ -1,4 +1,4 @@
-package com.umpaz.farmersrespite.blocks;
+package com.chefsdelights.farmersrespite.blocks;
 
 import java.util.Random;
 
@@ -9,7 +9,9 @@ import com.umpaz.farmersrespite.setup.FRConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.PlantBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
@@ -19,11 +21,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-	public class SmallTeaBushBlock extends BushBlock implements IGrowable {
+	public class SmallTeaBushBlock extends PlantBlock implements Fertilizable {
 		   public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
-		public SmallTeaBushBlock(Properties properties) {
-			super(properties);
+		public SmallTeaBushBlock(Settings settings) {
+			super(settings);
 		}
 		
 		 public VoxelShape getShape(BlockState state, IBlockReader level, BlockPos pos, ISelectionContext context) {
