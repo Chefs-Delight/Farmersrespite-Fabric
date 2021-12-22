@@ -1,34 +1,20 @@
 package com.chefsdelights.farmersrespite.blocks;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import com.umpaz.farmersrespite.registry.FRBlocks;
 import com.umpaz.farmersrespite.registry.FRItems;
 import com.umpaz.farmersrespite.setup.FRConfiguration;
-
 import net.minecraft.block.*;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.IGrowable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.EnumProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -39,8 +25,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
 public class CoffeeBushBlock extends PlantBlock implements Fertilizable {
-	   public static final IntegerProperty AGE = BlockStateProperties.AGE_1;
+	   public static final IntProperty AGE = BlockStateProperties.AGE_1;
 	   public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
 	   private static final VoxelShape SHAPE_LOWER = VoxelShapes.or(Block.box(0.0D, 6.0D, 0.0D, 16.0D, 18.0D, 16.0D), Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D));

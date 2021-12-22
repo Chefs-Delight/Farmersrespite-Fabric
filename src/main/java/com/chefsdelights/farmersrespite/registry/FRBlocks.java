@@ -8,7 +8,6 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.sound.BlockSoundGroup;
 
 public class FRBlocks {
-
 	// Workstations
 	public static final Block KETTLE = HELPER.register("kettle", KettleBlock::new);
 
@@ -27,6 +26,4 @@ public class FRBlocks {
 	//Food
 	public static final Block COFFEE_CAKE = HELPER.register("coffee_cake", () -> new CoffeeCakeBlock(FRItems.Foods.COFFEE_CAKE, StatusEffectCategory.BENEFICIAL, FRItems.COFFEE_CAKE_SLICE, AbstractBlock.Settings.of(Material.CAKE, MapColor.BROWN).strength(0.5F).sounds(BlockSoundGroup.WOOL)));
 	public static final Block ROSE_HIP_PIE = HELPER.register("rose_hip_pie", () -> new PieBlock(AbstractBlock.Settings.copy(Blocks.CAKE), FRItems.ROSE_HIP_PIE_SLICE));
-
-	
 }

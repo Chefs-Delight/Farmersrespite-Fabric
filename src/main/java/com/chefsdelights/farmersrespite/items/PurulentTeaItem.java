@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
@@ -12,8 +13,7 @@ import net.minecraft.world.World;
 import vectorwing.farmersdelight.items.drinks.DrinkItem;
 
 public class PurulentTeaItem extends DrinkItem {
-
-	public PurulentTeaItem(Properties properties) {
+	public PurulentTeaItem(Item.Settings settings) {
 		super(properties, true, true);
 	}
 	

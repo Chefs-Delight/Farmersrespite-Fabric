@@ -9,6 +9,7 @@ import com.umpaz.farmersrespite.registry.FREffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -21,7 +22,7 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-public class CaffeinatedEffect extends Effect {
+public class CaffeinatedEffect extends StatusEffect {
 	public static final Set<Effect> CAFFINATED_IMMUNITIES = Sets.newHashSet(Effects.MOVEMENT_SLOWDOWN, Effects.DIG_SLOWDOWN);
 
 	public CaffeinatedEffect() {
