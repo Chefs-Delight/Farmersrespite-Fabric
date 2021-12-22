@@ -10,11 +10,10 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.world.World;
-import vectorwing.farmersdelight.items.drinks.DrinkItem;
 
 public class PurulentTeaItem extends DrinkItem {
 	public PurulentTeaItem(Item.Settings settings) {
-		super(properties, true, true);
+		super(settings, true, true);
 	}
 	
 	@Override
