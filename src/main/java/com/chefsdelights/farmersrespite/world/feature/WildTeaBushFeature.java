@@ -11,11 +11,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
-public class WildTeaBushFeature extends Feature<NoFeatureConfig> {
-	public WildTeaBushFeature(Codec<NoFeatureConfig> config) {
+public class WildTeaBushFeature extends Feature<DefaultFeatureConfig> {
+	public WildTeaBushFeature(Codec<DefaultFeatureConfig> config) {
 		super(config);
 	}
 

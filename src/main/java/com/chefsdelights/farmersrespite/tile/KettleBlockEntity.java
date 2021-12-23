@@ -50,7 +50,7 @@ import vectorwing.farmersdelight.utils.ItemUtils;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class KettleTileEntity extends FDSyncedTileEntity implements INamedContainerProvider, ITickableTileEntity, IHeatableTileEntity, INameable {
+public class KettleBlockEntity extends FDSyncedTileEntity implements INamedContainerProvider, ITickableTileEntity, IHeatableTileEntity, INameable {
 	public static final int MEAL_DISPLAY_SLOT = 2;
 	public static final int CONTAINER_SLOT = 3;
 	public static final int OUTPUT_SLOT = 4;
@@ -72,7 +72,7 @@ public class KettleTileEntity extends FDSyncedTileEntity implements INamedContai
 	private ResourceLocation lastRecipeID;
 	private boolean checkNewRecipe;
 
-	public KettleTileEntity() {
+	public KettleBlockEntity() {
 		super(FRTileEntityTypes.KETTLE_TILE.get());
 		this.inventory = createHandler();
 		this.inputHandler = LazyOptional.of(() -> new KettleItemHandler(inventory, Direction.UP));
@@ -533,9 +533,9 @@ public class KettleTileEntity extends FDSyncedTileEntity implements INamedContai
 			public int get(int index) {
 				switch (index) {
 					case 0:
-						return KettleTileEntity.this.brewTime;
+						return KettleBlockEntity.this.brewTime;
 					case 1:
-						return KettleTileEntity.this.brewTimeTotal;
+						return KettleBlockEntity.this.brewTimeTotal;
 					default:
 						return 0;
 				}
@@ -545,10 +545,10 @@ public class KettleTileEntity extends FDSyncedTileEntity implements INamedContai
 			public void set(int index, int value) {
 				switch (index) {
 					case 0:
-						KettleTileEntity.this.brewTime = value;
+						KettleBlockEntity.this.brewTime = value;
 						break;
 					case 1:
-						KettleTileEntity.this.brewTimeTotal = value;
+						KettleBlockEntity.this.brewTimeTotal = value;
 						break;
 				}
 			}

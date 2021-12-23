@@ -16,7 +16,8 @@ import com.google.gson.GsonBuilder;
 
 public class FarmersRespite implements ModInitializer {
 	public static final String MOD_ID = "farmersrespite";
-	public static final ItemGroup GROUP = FabricItemGroupBuilder.create(
+
+	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
 					new Identifier(MOD_ID, "group"))
 			.icon(() -> new ItemStack(FRBlocks.KETTLE))
 			.build();
@@ -25,6 +26,9 @@ public class FarmersRespite implements ModInitializer {
 	public static final Gson GSON = new GsonBuilder().setPrettyPrinting()
 			.disableHtmlEscaping()
 			.create();
+	public static Identifier id(String path) {
+		return new Identifier(MOD_ID, path);
+	}
 
 	@Override
 	public void onInitialize() {

@@ -1,10 +1,14 @@
 package com.chefsdelights.farmersrespite.registry;
 
+import com.chefsdelights.farmersrespite.FarmersRespite;
+import com.chefsdelights.farmersrespite.effects.CaffeinatedEffect;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.util.registry.Registry;
 
 public class FREffects {
+	public static final StatusEffect CAFFEINATED = register("caffeinated", CaffeinatedEffect::new);
 
-	public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, FarmersRespite.MODID);
-
-	public static final StatusEffect CAFFEINATED = EFFECTS.register("caffeinated", CaffeinatedEffect::new);
+	public static <T extends StatusEffect> T register(String path, T effect) {
+		return Registry.register(Registry.STATUS_EFFECT, FarmersRespite.id(path), effect);
+	}
 }
