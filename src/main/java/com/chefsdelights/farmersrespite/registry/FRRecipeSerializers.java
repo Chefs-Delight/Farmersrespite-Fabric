@@ -2,13 +2,7 @@ package com.chefsdelights.farmersrespite.registry;
 
 import com.chefsdelights.farmersrespite.FarmersRespite;
 import com.chefsdelights.farmersrespite.crafting.KettleRecipe;
-import com.chefsdelights.farmersrespite.integration.rei.brewing.BrewingRecipeDisplay;
 import com.chefsdelights.farmersrespite.recipe.KettleRecipeSerializer;
-import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
-import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipeSerializer;
-import com.nhoryzon.mc.farmersdelight.recipe.CuttingBoardRecipe;
-import com.nhoryzon.mc.farmersdelight.recipe.CuttingBoardRecipeSerializer;
-import com.nhoryzon.mc.farmersdelight.registry.RecipeTypesRegistry;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
@@ -20,7 +14,6 @@ import java.util.function.Supplier;
 
 public enum FRRecipeSerializers {
 	BREWING_RECIPE_SERIALIZER("brewing", KettleRecipe.class, KettleRecipeSerializer::new);
-	//	CUTTING_RECIPE_SERIALIZER("cutting", CuttingBoardRecipe.class, CuttingBoardRecipeSerializer::new);
 
 	private final String pathName;
 	private final Class<? extends Recipe<? extends Inventory>> recipeClass;
@@ -40,15 +33,15 @@ public enum FRRecipeSerializers {
 
 		for(int var2 = 0; var2 < var1; ++var2) {
 			FRRecipeSerializers value = var0[var2];
-			Registry.register(Registry.RECIPE_SERIALIZER, new Identifier("farmersdelight", value.pathName), value.serializer());
-			value.type = RecipeType.register((new Identifier("farmersdelight", value.pathName)).toString());
+			Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(FarmersRespite.MOD_ID, value.pathName), value.serializer());
+			value.type = RecipeType.register((new Identifier(FarmersRespite.MOD_ID, value.pathName)).toString());
 		}
 
 	}
 
 	public RecipeSerializer<? extends Recipe<? extends Inventory>> serializer() {
 		if (this.serializer == null) {
-			this.serializer = (RecipeSerializer) this.recipeSerializerSupplier.get();
+			this.serializer = this.recipeSerializerSupplier.get();
 		}
 
 		return this.serializer;
@@ -60,7 +53,7 @@ public enum FRRecipeSerializers {
 
 	private <T extends Recipe<? extends Inventory>> RecipeType<T> type(Class<T> clazz) {
 		if (this.type == null) {
-			this.type = RecipeType.register((new Identifier("farmersdelight", this.pathName)).toString());
+			this.type = RecipeType.register((new Identifier(FarmersRespite.MOD_ID, this.pathName)).toString());
 		}
 
 		return (RecipeType<T>) this.type;

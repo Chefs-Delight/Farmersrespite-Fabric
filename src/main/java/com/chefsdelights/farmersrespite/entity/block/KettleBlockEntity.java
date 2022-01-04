@@ -1,56 +1,25 @@
-package com.chefsdelights.farmersrespite.tile;
+package com.chefsdelights.farmersrespite.entity.block;
+
+import com.chefsdelights.farmersrespite.crafting.KettleRecipe;
+import com.chefsdelights.farmersrespite.registry.FRBlockEntityTypes;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 
 import java.util.Optional;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import com.umpaz.farmersrespite.blocks.KettleBlock;
-import com.umpaz.farmersrespite.crafting.KettleRecipe;
-import com.umpaz.farmersrespite.registry.FRTileEntityTypes;
-import com.umpaz.farmersrespite.tile.container.KettleContainer;
-import com.umpaz.farmersrespite.tile.inventory.KettleItemHandler;
-import com.umpaz.farmersrespite.utils.FRTextUtils;
-
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.INameable;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
 import vectorwing.farmersdelight.mixin.accessors.RecipeManagerAccessor;
-import vectorwing.farmersdelight.tile.FDSyncedTileEntity;
 import vectorwing.farmersdelight.tile.IHeatableTileEntity;
-import vectorwing.farmersdelight.utils.ItemUtils;
 
-@MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
-public class KettleBlockEntity extends FDSyncedTileEntity implements INamedContainerProvider, ITickableTileEntity, IHeatableTileEntity, INameable {
+public class KettleBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Tickable, IHeatableTileEntity, INameable {
 	public static final int MEAL_DISPLAY_SLOT = 2;
 	public static final int CONTAINER_SLOT = 3;
 	public static final int OUTPUT_SLOT = 4;
@@ -73,7 +42,7 @@ public class KettleBlockEntity extends FDSyncedTileEntity implements INamedConta
 	private boolean checkNewRecipe;
 
 	public KettleBlockEntity() {
-		super(FRTileEntityTypes.KETTLE_TILE.get());
+		super(FRBlockEntityTypes.KETTLE_TILE);
 		this.inventory = createHandler();
 		this.inputHandler = LazyOptional.of(() -> new KettleItemHandler(inventory, Direction.UP));
 		this.outputHandler = LazyOptional.of(() -> new KettleItemHandler(inventory, Direction.DOWN));
@@ -558,5 +527,11 @@ public class KettleBlockEntity extends FDSyncedTileEntity implements INamedConta
 				return 2;
 			}
 		};
+	}
+
+	protected void inventoryChanged() {
+		super.markDirty();
+		if (world != null)
+			world.updateListeners(getPos(), getCachedState(), getCachedState(), 1 << 1);
 	}
 }

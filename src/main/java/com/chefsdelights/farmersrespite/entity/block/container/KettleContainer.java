@@ -1,7 +1,8 @@
-package com.chefsdelights.farmersrespite.tile.container;
+package com.chefsdelights.farmersrespite.entity.block.container;
 
 import java.util.Objects;
 
+import com.chefsdelights.farmersrespite.registry.FRContainerTypes;
 import com.mojang.datafixers.util.Pair;
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.blocks.KettleBlock;
@@ -10,8 +11,10 @@ import com.umpaz.farmersrespite.registry.FRContainerTypes;
 import com.umpaz.farmersrespite.tile.KettleTileEntity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
@@ -23,12 +26,13 @@ import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class KettleContainer extends Container {
+public class KettleContainer extends Inventory {
 	public static final ResourceLocation EMPTY_CONTAINER_SLOT_BOTTLE = new ResourceLocation(FarmersRespite.MODID, "item/empty_container_slot_bottle");
 
 	public final KettleTileEntity tileEntity;
@@ -37,7 +41,7 @@ public class KettleContainer extends Container {
 	private final IWorldPosCallable canInteractWithCallable;
 
 	public KettleContainer(final int windowId, final PlayerInventory playerInventory, final KettleTileEntity tileEntity, IIntArray kettleDataIn) {
-		super(FRContainerTypes.KETTLE.get(), windowId);
+		super(FRContainerTypes.KETTLE, windowId);
 		this.tileEntity = tileEntity;
 		this.inventory = tileEntity.getInventory();
 		this.kettleData = kettleDataIn;

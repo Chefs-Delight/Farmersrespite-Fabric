@@ -1,4 +1,4 @@
-package com.chefsdelights.farmersrespite.tile.container;
+package com.chefsdelights.farmersrespite.entity.block.container;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

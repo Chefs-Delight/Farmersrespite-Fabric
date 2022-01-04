@@ -1,9 +1,8 @@
 package com.chefsdelights.farmersrespite.integration.rei.brewing;
 
 import com.chefsdelights.farmersrespite.crafting.KettleRecipe;
-import com.chefsdelights.farmersrespite.integration.rei.FarmersRespiteReiPlugin;
+import com.chefsdelights.farmersrespite.integration.rei.FarmersRespiteREIPlugin;
 import com.google.common.collect.ImmutableList;
-import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -19,20 +18,19 @@ import java.util.Optional;
 @Environment(EnvType.CLIENT)
 public class BrewingRecipeDisplay extends BasicDisplay {
     private final EntryIngredient containerOutput;
-    private final int cookTime;
+    private final int brewTime;
+    private final boolean needWater;
 
     public BrewingRecipeDisplay(KettleRecipe recipe) {
         super(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
         this.containerOutput = EntryIngredients.of(recipe.getContainer());
         this.brewTime = recipe.getBrewTime();
+        this.needWater = recipe.getNeedWater();
     }
 
-    public BrewingRecipeDisplay() {
-
-    }
 
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return FarmersRespiteReiPlugin.BREWING;
+        return FarmersRespiteREIPlugin.BREWING;
     }
 
     public List<EntryIngredient> getInputEntries() {
@@ -50,6 +48,10 @@ public class BrewingRecipeDisplay extends BasicDisplay {
     }
 
     public int getCookTime() {
-        return this.cookTime;
+        return this.brewTime;
+    }
+
+    public boolean getNeedWater() {
+        return this.needWater;
     }
 }

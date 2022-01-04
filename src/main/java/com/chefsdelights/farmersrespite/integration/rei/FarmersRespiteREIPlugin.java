@@ -7,8 +7,6 @@ import com.chefsdelights.farmersrespite.integration.rei.brewing.BrewingRecipeDis
 import com.chefsdelights.farmersrespite.registry.FRBlocks;
 import com.chefsdelights.farmersrespite.registry.FRRecipeSerializers;
 import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
-import com.nhoryzon.mc.farmersdelight.integration.rei.cooking.CookingRecipeDisplay;
-import com.nhoryzon.mc.farmersdelight.integration.rei.cutting.CuttingRecipeDisplay;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
@@ -17,18 +15,16 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import me.shedaniel.rei.plugin.common.displays.brewing.BrewingRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
-public class FarmersRespiteReiPlugin implements REIClientPlugin {
+public class FarmersRespiteREIPlugin implements REIClientPlugin {
 //	@Override
 //	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
 //		registration.addRecipeTransferHandler(KettleContainer.class, BrewingRecipeCategory.UID, 0, 2, 5, 36);
 //	}
-	//DisplayCategory<KettleRecipe
 	public static final CategoryIdentifier<BrewingRecipeDisplay> BREWING = CategoryIdentifier.of(FarmersDelightMod.MOD_ID, "brewing");
 
 	public static Rectangle centeredIntoRecipeBase(Point origin, int width, int height) {

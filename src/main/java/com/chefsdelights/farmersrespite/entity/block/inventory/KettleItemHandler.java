@@ -1,11 +1,6 @@
-package com.chefsdelights.farmersrespite.tile.inventory;
+package com.chefsdelights.farmersrespite.entity.block.inventory;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraftforge.items.IItemHandler;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class KettleItemHandler implements IItemHandler {
 	private static final int SLOTS_INPUT = 2;

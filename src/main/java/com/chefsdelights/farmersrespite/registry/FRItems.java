@@ -14,7 +14,6 @@ import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
 public class FRItems {
-
 	public static final Item KETTLE = register("kettle", new BlockItem(FRBlocks.KETTLE, new Item.Settings().maxCount(1).group(FarmersRespite.ITEM_GROUP)));
 	
 	public static final Item WILD_TEA_BUSH = register("wild_tea_bush", new BlockItem(FRBlocks.WILD_TEA_BUSH, new Item.Settings().group(FarmersRespite.ITEM_GROUP)));
@@ -65,8 +64,8 @@ public class FRItems {
 		public static final FoodComponent COFFEE_CAKE = (new FoodComponent.Builder()).hunger(1).saturationModifier(0.1F).statusEffect( new StatusEffectInstance(FREffects.CAFFEINATED, 600), 1.0F).build();
     	public static final FoodComponent COFFEE_CAKE_SLICE = (new FoodComponent.Builder()).hunger(3).saturationModifier(0.3f).snack().statusEffect( new StatusEffectInstance(StatusEffects.SPEED, 400, 0), 1.0F).statusEffect( new StatusEffectInstance(FREffects.CAFFEINATED, 600, 0), 1.0F).build();
     	public static final FoodComponent COFFEE_BERRIES = (new FoodComponent.Builder()).hunger(2).saturationModifier(0.4f).statusEffect( new StatusEffectInstance(FREffects.CAFFEINATED, 200, 0), 1.0F).statusEffect( new StatusEffectInstance(StatusEffects.WITHER, 100, 0), 0.8F).build();
-
 	}
+
 	public static <T extends Item> T register(String path, T item) {
 		return Registry.register(Registry.ITEM, FarmersRespite.id(path), item);
 	}

@@ -1,4 +1,4 @@
-package com.chefsdelights.farmersrespite.tile.container;
+package com.chefsdelights.farmersrespite.entity.block.container;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
