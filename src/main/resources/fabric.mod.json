@@ -27,6 +27,10 @@
   "entrypoints": {
     "main": [
       "com.chefsdelights.farmersrespite.FarmersRespite"
+    ],
+    "client": [],
+    "rei"   : [
+      "com.chefsdelights.farmersrespite.integration.rei.FarmersRespiteReiPlugin"
     ]
   },
   "mixins": [],

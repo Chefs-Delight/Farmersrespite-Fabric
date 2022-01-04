@@ -8,10 +8,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.nhoryzon.mc.farmersdelight.entity.block.screen.CookingPotScreenHandler;
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.tile.container.KettleContainer;
 import com.umpaz.farmersrespite.utils.FRTextUtils;
 
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -21,7 +23,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 @ParametersAreNonnullByDefault
-public class KettleScreen extends ContainerScreen<KettleContainer> {
+public class KettleScreen extends HandledScreen<CookingPotScreenHandler> { //HandledScreen<KettleScreenHandler>
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(FarmersRespite.MODID, "textures/gui/kettle.png");
 	private static final Rectangle HEAT_ICON = new Rectangle(41, 55, 17, 15);
 	private static final Rectangle PROGRESS_ARROW = new Rectangle(62, 25, 0, 17);

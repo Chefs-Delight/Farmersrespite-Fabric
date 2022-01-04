@@ -7,11 +7,13 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.nhoryzon.mc.farmersdelight.integration.rei.cutting.CuttingRecipeDisplay;
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.crafting.KettleRecipe;
 import com.umpaz.farmersrespite.registry.FRItems;
 
 import mcp.MethodsReturnNonnullByDefault;
+import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -26,9 +28,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
-public class BrewingRecipeCategory implements IRecipeCategory<KettleRecipe> {
+public class BrewingRecipeCategory implements DisplayCategory<CuttingRecipeDisplay> { //DisplayCategory<KettleRecipe
 	public static final ResourceLocation UID = new ResourceLocation(FarmersRespite.MODID, "brewing");
 	protected final IDrawable heatIndicator;
 	protected final IDrawable waterBar;
@@ -37,7 +37,7 @@ public class BrewingRecipeCategory implements IRecipeCategory<KettleRecipe> {
 	private final IDrawable background;
 	private final IDrawable icon;
 
-	public BrewingRecipeCategory(IGuiHelper helper) {
+	public BrewingRecipeCategory() {
 		title = I18n.get(FarmersRespite.MODID + ".jei.brewing");
 		ResourceLocation backgroundImage = new ResourceLocation(FarmersRespite.MODID, "textures/gui/jei/kettle_jei.png");
 		background = helper.createDrawable(backgroundImage, 29, 16, 117, 57);
