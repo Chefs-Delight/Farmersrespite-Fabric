@@ -1,65 +1,66 @@
 package com.chefsdelights.farmersrespite.blocks;
 
+import com.chefsdelights.farmersrespite.registry.FRBlocks;
+import com.chefsdelights.farmersrespite.registry.FRItems;
+import com.chefsdelights.farmersrespite.setup.FRConfiguration;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.DoubleBlockHalf;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+
 import java.util.Random;
 
-import com.umpaz.farmersrespite.registry.FRBlocks;
-import com.umpaz.farmersrespite.registry.FRItems;
-import com.umpaz.farmersrespite.setup.FRConfiguration;
+@SuppressWarnings("deprecation")
+public class SmallTeaBushBlock extends PlantBlock implements Fertilizable {
+    public static final VoxelShape SHAPE;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+    public SmallTeaBushBlock(Settings settings) {
+    super(settings);
+    }
 
-	public class SmallTeaBushBlock extends PlantBlock implements Fertilizable {
-		   public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
 
-		public SmallTeaBushBlock(Settings settings) {
-			super(settings);
-		}
-		
-		 public VoxelShape getShape(BlockState state, IBlockReader level, BlockPos pos, ISelectionContext context) {
-			 return SHAPE;
-		 }
-		 
-		 public ItemStack getCloneItemStack(IBlockReader level, BlockPos pos, BlockState state) {
-			 return new ItemStack(FRItems.TEA_SEEDS.get());
-		 }
-		 
-		 public boolean isRandomlyTicking(BlockState state) {
-			 return true;
-		 }		
-		 
-		 public void randomTick(BlockState state, ServerWorld level, BlockPos pos, Random random) {
-			 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(10) == 0)) {
-				 performBonemeal(level, random, pos, state);
-				 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
-			 }
-		 }
+    @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return new ItemStack(FRItems.TEA_SEEDS);
+    }
 
-		@Override
-		public boolean isValidBonemealTarget(IBlockReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
-			return FRConfiguration.BONE_MEAL_TEA.get();
-		}
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return true;
+    }
 
-		@Override
-		public boolean isBonemealSuccess(World pLevel, Random pRand, BlockPos pPos, BlockState pState) {
-			return true;
-		}
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (random.nextInt(10) == 0) {
+            this.grow(world, random, pos, state);
+        }
+    }
 
-		@Override
-		public void performBonemeal(ServerWorld pLevel, Random pRand, BlockPos pPos, BlockState pState) {	
-			pLevel.setBlockAndUpdate(pPos, FRBlocks.TEA_BUSH.get().defaultBlockState());
-			pLevel.setBlockAndUpdate(pPos.above(), FRBlocks.TEA_BUSH.get().defaultBlockState().setValue(TeaBushBlock.HALF, DoubleBlockHalf.UPPER));
-		}
+    @Override
+    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+        return FRConfiguration.BONE_MEAL_TEA;
+    }
+
+    @Override
+    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+        world.setBlockState(pos, FRBlocks.TEA_BUSH.getDefaultState());
+        world.setBlockState(pos.up(), FRBlocks.TEA_BUSH.getDefaultState().with(TeaBushBlock.HALF, DoubleBlockHalf.UPPER));
+    }
+
+    static {
+        SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
+    }
 }

@@ -1,191 +1,190 @@
 package com.chefsdelights.farmersrespite.blocks;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import com.umpaz.farmersrespite.registry.FRBlocks;
-import com.umpaz.farmersrespite.registry.FRItems;
-import com.umpaz.farmersrespite.setup.FRConfiguration;
-
+import com.chefsdelights.farmersrespite.registry.FRBlocks;
+import com.chefsdelights.farmersrespite.registry.FRItems;
+import com.chefsdelights.farmersrespite.setup.FRConfiguration;
 import net.minecraft.block.*;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.DoublePlantBlock;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.PushReaction;
+import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import vectorwing.farmersdelight.setup.Configuration;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
-	public class TeaBushBlock extends PlantBlock implements Fertilizable {
-	   public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-	   public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+import java.util.Random;
 
-	   private static final VoxelShape SHAPE_LOWER = VoxelShapes.or(Block.box(0.0D, 11.0D, 0.0D, 16.0D, 24.0D, 16.0D), Block.box(6.0D, 0.0D, 6.0D, 10.0D, 11.0D, 10.0D));
-	   private static final VoxelShape SHAPE_UPPER = VoxelShapes.or(Block.box(0.0D, -5.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(6.0D, -16.0D, 6.0D, 10.0D, -5.0D, 10.0D));
+@SuppressWarnings("deprecation")
+public class TeaBushBlock extends PlantBlock implements Fertilizable {
+    public static final IntProperty AGE = Properties.AGE_3;
+    public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
 
-	   public TeaBushBlock(Settings settings) {
-	      super(settings);
-	      this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(HALF, DoubleBlockHalf.LOWER));
-	   }
-	   
-	   public VoxelShape getShape(BlockState state, IBlockReader level, BlockPos pos, ISelectionContext context) {
-			if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
-			    return SHAPE_UPPER;
-		    	}
-		    return SHAPE_LOWER;
-		   }
-	   
-	   protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-	      builder.add(AGE, HALF);
-	   }
-		 
-	   public ItemStack getCloneItemStack(IBlockReader level, BlockPos pos, BlockState state) {
-		   return new ItemStack(FRItems.TEA_SEEDS.get());
-	   }
-	   
-	   public boolean isRandomlyTicking(BlockState state) {
-		      return state.getValue(AGE) < 3 && state.getValue(HALF) == DoubleBlockHalf.LOWER;
-		   }
-	   
-	   public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
-		      DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
-		      if (facing.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (facing == Direction.UP)) {
-		         return facingState.is(this) && facingState.getValue(HALF) != doubleblockhalf ? state.setValue(AGE, facingState.getValue(AGE)) : Blocks.AIR.defaultBlockState();
-		      } else {
-		         return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, pos, facingPos);
-		      }
-		   }
-	    
-	   public void randomTick(BlockState state, ServerWorld level, BlockPos pos, Random random) {
-		      if ((state.getValue(HALF) == DoubleBlockHalf.LOWER) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(10) == 0)) {
-		    	  performBonemeal(level, random, pos, state);		         
-		    	  net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
-		      }
-		   }
-	   
-	   public void playerWillDestroy(World pLevel, BlockPos pPos, BlockState pState, PlayerEntity pPlayer) {
-		      if (!pLevel.isClientSide && pPlayer.isCreative()) {
-		         preventCreativeDropFromBottomPart(pLevel, pPos, pState, pPlayer);
-		      }
+    private static final VoxelShape SHAPE_LOWER = VoxelShapes.union(Block.createCuboidShape(0.0D, 11.0D, 0.0D, 16.0D, 24.0D, 16.0D), Block.createCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 11.0D, 10.0D));
+    private static final VoxelShape SHAPE_UPPER = VoxelShapes.union(Block.createCuboidShape(0.0D, -5.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.createCuboidShape(6.0D, -16.0D, 6.0D, 10.0D, -5.0D, 10.0D));
 
-		      super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
-		   } 
-	   
-	   @Nullable
-	   public BlockState getStateForPlacement(BlockItemUseContext pContext) {
-	      BlockPos blockpos = pContext.getClickedPos();
-	      if (blockpos.getY() < 255 && pContext.getLevel().getBlockState(blockpos.above()).canBeReplaced(pContext)) {
-	         World world = pContext.getLevel();
-	         boolean flag = world.hasNeighborSignal(blockpos) || world.hasNeighborSignal(blockpos.above());
-	         return this.defaultBlockState().setValue(AGE, Integer.valueOf(0)).setValue(HALF, DoubleBlockHalf.LOWER);
-	      } else {
-	         return null;
-	      }
-	   }
+    public TeaBushBlock(Settings settings) {
+        super(settings);
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(HALF, DoubleBlockHalf.LOWER));
+    }
 
-	   public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
-	      pLevel.setBlock(pPos.above(), pState.setValue(HALF, DoubleBlockHalf.UPPER), 3);
-	   }
-	   
-	   protected static void preventCreativeDropFromBottomPart(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		      DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
-		      if (doubleblockhalf == DoubleBlockHalf.UPPER) {
-		         BlockPos blockpos = pos.below();
-		         BlockState blockstate = world.getBlockState(blockpos);
-		         if (blockstate.getBlock() == state.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
-		            world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-		            world.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
-		         }
-		      }
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(HALF) == DoubleBlockHalf.UPPER) {
+            return SHAPE_UPPER;
+        }
+        return SHAPE_LOWER;
+    }
 
-		   }
-	   
-	   public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
-		      BlockPos blockpos = pos.below();
-		      BlockState blockstate = world.getBlockState(blockpos);
-		      return state.getValue(HALF) == DoubleBlockHalf.LOWER ? blockstate.isFaceSturdy(world, blockpos, Direction.UP) : blockstate.is(this);
-		   }
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(AGE, HALF);
+    }
 
-	   public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult result) {
-		      int i = state.getValue(AGE);
-		      ItemStack heldStack = player.getItemInHand(handIn);
-		      Item item = heldStack.getItem();
+    @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return new ItemStack(FRItems.TEA_SEEDS);
+    }
 
-		      if (item == Items.SHEARS) {
-		         int j = world.random.nextInt(2);
-		         int k = 2 + world.random.nextInt(2);
-		         int l = world.random.nextInt(2);
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return state.get(AGE) < 3 && state.get(HALF) == DoubleBlockHalf.LOWER;
+    }
 
-		         if (i == 0) {
-		         popResource(world, pos, new ItemStack(FRItems.GREEN_TEA_LEAVES.get(), 2 + j));
-		         }
-		         if (i == 1) {
-			     popResource(world, pos, new ItemStack(FRItems.YELLOW_TEA_LEAVES.get(), 2 + j));
-		         }
-		         if (i == 2) {
-		         popResource(world, pos, new ItemStack(FRItems.YELLOW_TEA_LEAVES.get(), 1 + j));
-				 popResource(world, pos, new ItemStack(FRItems.BLACK_TEA_LEAVES.get(), 1 + l));
-		         }
-		         if (i == 3) {
-				 popResource(world, pos, new ItemStack(FRItems.BLACK_TEA_LEAVES.get(), 2 + j));
-		         }
-		         if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			     world.setBlockAndUpdate(pos, FRBlocks.SMALL_TEA_BUSH.get().defaultBlockState());
-		         }
-		         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
-				 world.setBlockAndUpdate(pos.below(), FRBlocks.SMALL_TEA_BUSH.get().defaultBlockState());
-			     }
-		         world.playSound((PlayerEntity)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-			     popResource(world, pos, new ItemStack(Items.STICK, k));
-			     heldStack.hurtAndBreak(1, player, (p_226874_1_) -> {player.broadcastBreakEvent(handIn);});	
-		         return ActionResultType.sidedSuccess(world.isClientSide);
-		      } else {
-			     return super.use(state, world, pos, player, handIn, result);
-		      }
-		   }
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        DoubleBlockHalf doubleblockhalf = state.get(HALF);
+        if (direction.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
+            return neighborState.isOf(this) && neighborState.get(HALF) != doubleblockhalf ? state.with(AGE, neighborState.get(AGE)) : Blocks.AIR.getDefaultState();
+        } else {
+            return doubleblockhalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        }
+    }
 
-	@Override
-	public boolean isValidBonemealTarget(IBlockReader level, BlockPos pos, BlockState state, boolean isClient) {
-	    int i = state.getValue(AGE);
-	    if (i != 3) {
-		return FRConfiguration.BONE_MEAL_TEA.get();
-	}
-	    return false;
-	} 
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if ((state.get(HALF) == DoubleBlockHalf.LOWER) && random.nextInt(10) == 0) {
+            this.performBonemeal(world, random, pos, state);
+        }
+    }
 
-	@Override
-	public boolean isBonemealSuccess(World level, Random rand, BlockPos pos, BlockState state) {
-		return true;
-	}
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!world.isClient && player.isCreative()) {
+            this.onBreakInCreative(world, pos, state, player);
+        }
+        super.onBreak(world, pos, state, player);
+    }
 
-	@Override
-	public void performBonemeal(ServerWorld level, Random rand, BlockPos pos, BlockState state) {
-	    int i = state.getValue(AGE);
-  	  	level.setBlockAndUpdate(pos, state.setValue(AGE, Integer.valueOf(i + 1)));
-		}
-	}
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        BlockPos blockPos = ctx.getBlockPos();
+        if (blockPos.getY() < 255 && ctx.getWorld().getBlockState(blockPos.up()).canReplace(ctx)) {
+            return this.getDefaultState().with(AGE, 0).with(HALF, DoubleBlockHalf.LOWER);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        world.setBlockState(pos.up(), state.with(HALF, DoubleBlockHalf.UPPER), 3);
+    }
+
+    protected void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        DoubleBlockHalf doubleBlockHalf = state.get(HALF);
+        if (doubleBlockHalf == DoubleBlockHalf.UPPER) {
+            BlockPos blockPos = pos.down();
+            BlockState blockstate = world.getBlockState(blockPos);
+            if (blockstate.getBlock() == state.getBlock() && blockstate.get(HALF) == DoubleBlockHalf.LOWER) {
+                world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 35);
+                world.syncWorldEvent(player, 2001, blockPos, Block.getRawIdFromState(blockstate));
+            }
+        }
+    }
+
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        BlockPos blockPos = pos.down();
+        BlockState blockstate = world.getBlockState(blockPos);
+        return state.get(HALF) == DoubleBlockHalf.LOWER ? blockstate.isSideSolidFullSquare(world, blockPos, Direction.UP) : blockstate.isOf(this);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        int i = state.get(AGE);
+        ItemStack heldStack = player.getStackInHand(hand);
+        Item item = heldStack.getItem();
+
+        if (item == Items.SHEARS) {
+            int j = world.random.nextInt(2);
+            int k = 2 + world.random.nextInt(2);
+            int l = world.random.nextInt(2);
+
+            if (i == 0) {
+                dropStack(world, pos, new ItemStack(FRItems.GREEN_TEA_LEAVES, 2 + j));
+            }
+            if (i == 1) {
+                dropStack(world, pos, new ItemStack(FRItems.YELLOW_TEA_LEAVES, 2 + j));
+            }
+            if (i == 2) {
+                dropStack(world, pos, new ItemStack(FRItems.YELLOW_TEA_LEAVES, 1 + j));
+                dropStack(world, pos, new ItemStack(FRItems.BLACK_TEA_LEAVES, 1 + l));
+            }
+            if (i == 3) {
+                dropStack(world, pos, new ItemStack(FRItems.BLACK_TEA_LEAVES, 2 + j));
+            }
+            if (state.get(HALF) == DoubleBlockHalf.LOWER) {
+                world.setBlockState(pos, FRBlocks.SMALL_TEA_BUSH.getDefaultState());
+            }
+            if (state.get(HALF) == DoubleBlockHalf.UPPER) {
+                world.setBlockState(pos.down(), FRBlocks.SMALL_TEA_BUSH.getDefaultState());
+            }
+            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+            dropStack(world, pos, new ItemStack(Items.STICK, k));
+            heldStack.damage(1, player, (p_226874_1_) -> player.broadcastBreakEvent(handIn));
+            return ActionResult.success(world.isClient);
+        } else {
+            return super.onUse(state, world, pos, player, hand, hit);
+        }
+    }
+
+    @Override
+    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+        int i = state.get(AGE);
+        if (i != 3) {
+            return FRConfiguration.BONE_MEAL_TEA;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+        int i = state.get(AGE);
+        world.setBlockState(pos, state.with(AGE, i + 1));
+    }
+}
