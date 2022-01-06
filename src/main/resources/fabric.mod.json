@@ -27,16 +27,23 @@
   "entrypoints": {
     "main": [
       "com.chefsdelights.farmersrespite.FarmersRespite"
+    ],
+    "client": [],
+    "rei"   : [
+      "com.chefsdelights.farmersrespite.integration.rei.FarmersRespiteReiPlugin"
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "farmersrespite.mixins.json"
+  ],
   "accessWidener": "farmersrespite.accesswidener",
 
   "depends": {
     "fabricloader": ">=0.12.6",
     "fabric": "*",
     "minecraft": "1.18.x",
-    "java": ">=17"
+    "java": ">=17",
+    "forgeconfigapiport": "*"
   },
 
   "custom": {

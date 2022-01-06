@@ -1,19 +1,14 @@
 package com.chefsdelights.farmersrespite.world.feature;
 
-import java.util.Random;
-
+import com.chefsdelights.farmersrespite.registry.FRBlocks;
 import com.mojang.serialization.Codec;
-import com.umpaz.farmersrespite.registry.FRBlocks;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class WildTeaBushFeature extends Feature<DefaultFeatureConfig> {
 	public WildTeaBushFeature(Codec<DefaultFeatureConfig> config) {
@@ -21,14 +16,16 @@ public class WildTeaBushFeature extends Feature<DefaultFeatureConfig> {
 	}
 
 	@Override
-	public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-		BlockState blockstate = FRBlocks.WILD_TEA_BUSH.get().defaultBlockState();
+	public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+		StructureWorldAccess worldIn = context.getWorld();
+		BlockPos pos = context.getOrigin();
+		BlockState blockstate = FRBlocks.WILD_TEA_BUSH.getDefaultState();
 
-		int i = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE, pos.getX(), pos.getZ());
+		int i = worldIn.getHeight();
 		BlockPos blockpos = new BlockPos(pos.getX(), i, pos.getZ());
 
-		if (worldIn.isEmptyBlock(blockpos) && worldIn.getBlockState(blockpos.below()).getBlock() == Blocks.GRASS_BLOCK) {
-			worldIn.setBlock(blockpos, blockstate, 2);
+		if (worldIn.isAir(blockpos) && worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.GRASS_BLOCK) {
+			worldIn.setBlockState(blockpos, blockstate, 2);
 
 			return true;
 		}

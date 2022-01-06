@@ -1,17 +1,16 @@
 package com.chefsdelights.farmersrespite.utils;
 
-import com.umpaz.farmersrespite.FarmersRespite;
+import com.chefsdelights.farmersrespite.FarmersRespite;
 
+import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
 
 public class FRTags {
+	public static final Tag.Identified<Item> TEA_LEAVES = create("tea_leaves", TagFactory.ITEM);
 
-	public static final ITag.INamedTag<Item> TEA_LEAVES = modItemTag("tea_leaves");
-
-	private static ITag.INamedTag<Item> modItemTag(String path) {
-		return ItemTags.bind(FarmersRespite.MODID + ":" + path);
+	private static <E> Tag.Identified<E> create(String pathName, TagFactory<E> tagFactory) {
+		return tagFactory.create(new Identifier(FarmersRespite.MOD_ID, pathName));
 	}
-
 }

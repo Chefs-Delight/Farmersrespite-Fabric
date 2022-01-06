@@ -49,11 +49,15 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
     modImplementation "maven.modrinth:sodium:${project.sodium_version}"
-    modCompileOnly "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
+    modImplementation "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
     modRuntime "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
+    modImplementation "curse.maven:forge-config-api-port-fabric-547434:3562302"
+    implementation 'com.electronwill.night-config:core:3.6.3'
+    implementation 'com.electronwill.night-config:toml:3.6.3'
 
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:7.0.352"
-    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:7.0.352"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
+    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 }
 
 loom {

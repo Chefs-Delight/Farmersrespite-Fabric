@@ -1,26 +1,15 @@
 package com.chefsdelights.farmersrespite.utils;
 
-import java.util.List;
-import java.util.Map;
-
+import com.chefsdelights.farmersrespite.FarmersRespite;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import com.umpaz.farmersrespite.FarmersRespite;
-
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.item.Food;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectUtils;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.text.MutableText;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Util for obtaining and formatting ITextComponents for use across the mod.
@@ -32,14 +21,14 @@ public class FRTextUtils {
 	/**
 	 * Syntactic sugar for custom translation keys. Always prefixed with the mod's ID in lang files (e.g. farmersrespite.your.key.here).
 	 */
-	public static IFormattableTextComponent getTranslation(String key, Object... args) {
-		return new TranslationTextComponent(FarmersRespite.MODID + "." + key, args);
+	public static MutableText getTranslation(String key, Object... args) {
+		return new MutableText(FarmersRespite.MOD_ID + "." + key, args);
 	}
 
 	/**
 	 * An alternate version of PotionUtils.addPotionTooltip, that obtains the item's food-property potion effects instead.
 	 */
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public static void addFoodEffectTooltip(ItemStack itemIn, List<ITextComponent> lores, float durationFactor) {
 		Food stackFood = itemIn.getItem().getFoodProperties();
 		if (stackFood == null) {

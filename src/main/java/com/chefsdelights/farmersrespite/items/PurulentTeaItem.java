@@ -19,7 +19,7 @@ public class PurulentTeaItem extends DrinkItem {
 	
 	@Override
 	public void affectConsumer(ItemStack stack, World worldIn, LivingEntity consumer) {
-		Iterator<StatusEffectInstance> itr = consumer.getActiveEffects().iterator();
+		Iterator<StatusEffectInstance> itr = consumer.getStatusEffects().iterator();
 		ArrayList<StatusEffect> compatibleEffects = new ArrayList<>();
 
 		while (itr.hasNext()) {
@@ -32,7 +32,7 @@ public class PurulentTeaItem extends DrinkItem {
 		if (compatibleEffects.size() > 0) {
 			StatusEffectInstance selectedEffect = consumer.getEffect(compatibleEffects.get(worldIn.random.nextInt(compatibleEffects.size())));
 			if (selectedEffect != null && !net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.living.PotionEvent.PotionRemoveEvent(consumer, selectedEffect))) {
-				consumer.addEffect(new StatusEffectInstance(selectedEffect.getEffectType(), selectedEffect.getDuration() + 400, selectedEffect.getAmplifier(), selectedEffect.isAmbient(), selectedEffect.isVisible(), selectedEffect.showIcon()));
+				consumer.addStatusEffect(new StatusEffectInstance(selectedEffect.getEffectType(), selectedEffect.getDuration() + 400, selectedEffect.getAmplifier(), selectedEffect.isAmbient(), selectedEffect.isVisible(), selectedEffect.showIcon()));
 			}
 		}
 	}

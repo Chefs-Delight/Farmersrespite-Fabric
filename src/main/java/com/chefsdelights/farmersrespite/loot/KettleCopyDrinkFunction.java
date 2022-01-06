@@ -1,29 +1,15 @@
 package com.chefsdelights.farmersrespite.loot;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
+import com.chefsdelights.farmersrespite.FarmersRespite;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import com.umpaz.farmersrespite.FarmersRespite;
-import com.umpaz.farmersrespite.tile.KettleTileEntity;
 
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootFunction;
-import net.minecraft.loot.LootFunctionType;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import vectorwing.farmersdelight.loot.functions.CopyMealFunction;
+import net.minecraft.loot.function.LootFunction;
+import net.minecraft.util.Identifier;
 
-@MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
 public class KettleCopyDrinkFunction extends LootFunction {
-	public static final ResourceLocation ID = new ResourceLocation(FarmersRespite.MODID, "copy_drink");
+	public static final Identifier ID = new Identifier(FarmersRespite.MOD_ID, "copy_drink");
 
 	private KettleCopyDrinkFunction(ILootCondition[] conditions) {
 		super(conditions);
