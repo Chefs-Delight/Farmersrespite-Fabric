@@ -1,6 +1,7 @@
 package com.chefsdelights.farmersrespite.data.builder;
 
 import com.chefsdelights.farmersrespite.FarmersRespite;
+import com.chefsdelights.farmersrespite.crafting.ingredients.ChanceResult;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.nhoryzon.mc.farmersdelight.registry.RecipeTypesRegistry;
@@ -117,7 +118,7 @@ public class FRCuttingBoardRecipeBuilder {
 			JsonArray arrayResults = new JsonArray();
 			for (ChanceResult result : this.results) {
 				JsonObject jsonobject = new JsonObject();
-				jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(result.getStack().getItem()).toString());
+				jsonobject.addProperty("item", Registry.ITEM.getId(result.getStack().getItem()).toString());
 				if (result.getStack().getCount() > 1) {
 					jsonobject.addProperty("count", result.getStack().getCount());
 				}

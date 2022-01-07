@@ -1,6 +1,7 @@
 package com.chefsdelights.farmersrespite.registry;
 
 import com.chefsdelights.farmersrespite.FarmersRespite;
+import com.chefsdelights.farmersrespite.loot.function.KettleCopyDrinkFunctionSerializer;
 import com.nhoryzon.mc.farmersdelight.loot.function.CopyMealFunctionSerializer;
 import com.nhoryzon.mc.farmersdelight.loot.function.SmokerCookFunctionSerializer;
 import java.util.function.Supplier;
@@ -11,7 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public enum FRLootFunctions {
-    COPY_DRINK("copy_drink", SmokerCookFunctionSerializer::new);
+    COPY_DRINK("copy_drink", KettleCopyDrinkFunctionSerializer::new);
 
     private final String pathName;
     private final Supplier<Serializer<? extends LootFunction>> lootFunctionSerializerSupplier;

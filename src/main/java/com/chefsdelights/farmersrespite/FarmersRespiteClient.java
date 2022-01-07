@@ -1,7 +1,7 @@
 package com.chefsdelights.farmersrespite;
 
 import com.chefsdelights.farmersrespite.registry.FRBlocks;
-import com.chefsdelights.farmersrespite.registry.FRContainerTypes;
+import com.chefsdelights.farmersrespite.registry.FRExtendedScreenTypes;
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.client.gui.KettleScreen;
 import com.umpaz.farmersrespite.registry.FRBlocks;
@@ -53,7 +53,7 @@ public class FarmersRespiteClient {
 		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM_MIDDLE), RenderType.cutout());
 
 		
-		ScreenManager.register((FRContainerTypes.KETTLE), KettleScreen::new);
+		ScreenManager.register((FRExtendedScreenTypes.KETTLE), KettleScreen::new);
 
 	}
 }

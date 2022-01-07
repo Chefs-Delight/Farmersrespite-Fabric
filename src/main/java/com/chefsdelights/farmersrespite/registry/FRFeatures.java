@@ -14,9 +14,9 @@ public class FRFeatures {
 
 	public static final class Configured {
 		public static final ConfiguredFeature<?, ?> WILD_TEA_BUSH_FEATURE = register("wild_tea_bush", FRFeatures.WILD_TEA_BUSH.configure(FeatureConfig.DEFAULT)
-				.decorate(ConfiguredFeatures.Placements.HEIGHTMAP_DOUBLE_SQUARE).chance(18).count(3));
+				.withPlacement(PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP).chance(18).count(3));
 		public static final ConfiguredFeature<?, ?> COFFEE_BUSH_FEATURE = register("coffee_bush", FRFeatures.COFFEE_BUSH.configure(FeatureConfig.DEFAULT)
-				.decorate(ConfiguredFeatures.Placements.HEIGHTMAP_DOUBLE_SQUARE).count(50));
+				.withPlacement(PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP).count(50));
 
 		private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
 			return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(FarmersRespite.MOD_ID, name), configuredFeature);

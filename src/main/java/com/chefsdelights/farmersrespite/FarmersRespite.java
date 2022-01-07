@@ -27,6 +27,7 @@ public class FarmersRespite implements ModInitializer {
 	public static final Gson GSON = new GsonBuilder().setPrettyPrinting()
 			.disableHtmlEscaping()
 			.create();
+	public static final Gson FD_GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
 
 	@Override
 	public void onInitialize() {

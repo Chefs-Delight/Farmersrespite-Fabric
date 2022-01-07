@@ -1,7 +1,7 @@
 package com.chefsdelights.farmersrespite.client.gui;
 
 import com.chefsdelights.farmersrespite.FarmersRespite;
-import com.chefsdelights.farmersrespite.entity.block.container.KettleContainer;
+import com.chefsdelights.farmersrespite.entity.block.screen.KettleScreenHandler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.nhoryzon.mc.farmersdelight.entity.block.screen.CookingPotScreenHandler;
 import net.fabricmc.api.EnvType;
@@ -25,7 +25,7 @@ public class KettleScreen extends HandledScreen<CookingPotScreenHandler> { //Han
 	private static final Rectangle WATER_BAR3 = new Rectangle(34, 25, 5, 8);
 	private static final Rectangle WATER_BAR4 = new Rectangle(34, 17, 5, 8);
 	
-	public KettleScreen(KettleContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+	public KettleScreen(KettleScreenHandler screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 		super(screenContainer, inv, titleIn);
 		this.leftPos = 0;
 		this.topPos = 0;

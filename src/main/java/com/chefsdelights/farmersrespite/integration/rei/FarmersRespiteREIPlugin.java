@@ -23,7 +23,7 @@ import net.fabricmc.api.Environment;
 public class FarmersRespiteREIPlugin implements REIClientPlugin {
 //	@Override
 //	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-//		registration.addRecipeTransferHandler(KettleContainer.class, BrewingRecipeCategory.UID, 0, 2, 5, 36);
+//		registration.addRecipeTransferHandler(KettleScreenHandler.class, BrewingRecipeCategory.UID, 0, 2, 5, 36);
 //	}
 	public static final CategoryIdentifier<BrewingRecipeDisplay> BREWING = CategoryIdentifier.of(FarmersDelightMod.MOD_ID, "brewing");
 

@@ -14,7 +14,7 @@ import net.minecraft.util.registry.Registry;
 
 public class FRBlocks {
 	// Workstations
-	public static final Block KETTLE = register("kettle", KettleBlock::new);
+	public static final Block KETTLE = register("kettle", new KettleBlock());
 
 	//Tea
 	public static final Block TEA_BUSH = register("tea_bush", new TeaBushBlock(Block.Settings.of(Material.PLANT).breakInstantly().sounds(BlockSoundGroup.GRASS).nonOpaque()));
@@ -29,7 +29,7 @@ public class FRBlocks {
 	public static final Block COFFEE_STEM_MIDDLE = register("coffee_stem_middle", new CoffeeMiddleStemBlock(AbstractBlock.Settings.of(Material.PLANT).breakInstantly().sounds(BlockSoundGroup.GRASS).nonOpaque()));
 
 	//Food
-	public static final Block COFFEE_CAKE = register("coffee_cake", new CakeBlock(AbstractBlock.Settings.of(Material.CAKE, MapColor.BROWN).strength(0.5F).sounds(BlockSoundGroup.WOOL)));
+	public static final Block COFFEE_CAKE = register("coffee_cake", new CoffeeCakeBlock(AbstractBlock.Settings.of(Material.CAKE, MapColor.BROWN).strength(0.5F).sounds(BlockSoundGroup.WOOL)));
 	public static final Block ROSE_HIP_PIE = register("rose_hip_pie", new PieBlock(FRItems.ROSE_HIP_PIE_SLICE));
 
 	public static <T extends Block> T register(String path, T block, ItemGroup group) {

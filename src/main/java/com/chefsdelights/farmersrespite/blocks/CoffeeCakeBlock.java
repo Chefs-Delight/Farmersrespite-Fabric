@@ -16,16 +16,16 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 //TODO: Replace this with a mixin in KnivesEventListener
-//public class CoffeeCakeBlock extends CakeBlock {
+public class CoffeeCakeBlock extends CakeBlock {
 //	private final FoodComponent foodComponent;
 //	public final Item cakeSlice;
-//
-//	public CoffeeCakeBlock(FoodComponent foodComponent, Item cakeSlice, Settings settings) {
-//		super(settings);
+
+	public CoffeeCakeBlock(Settings settings){//(FoodComponent foodComponent, Item cakeSlice, Settings settings) {
+		super(settings);
 //		this.foodComponent = foodComponent;
 //		this.cakeSlice = cakeSlice;
-//	}
-//
+	}
+
 //	@Override
 //	public ActionResult use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 //		ItemStack heldStack = player.getStackInHand(handIn);
@@ -66,4 +66,4 @@ import net.minecraft.world.WorldAccess;
 //			return ActionResult.SUCCESS;
 //		}
 //	}
-//}
+}
