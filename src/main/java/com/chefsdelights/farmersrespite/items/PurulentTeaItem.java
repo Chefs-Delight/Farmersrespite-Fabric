@@ -1,15 +1,15 @@
 package com.chefsdelights.farmersrespite.items;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 import com.chefsdelights.farmersrespite.items.drinks.DrinkItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class PurulentTeaItem extends DrinkItem {
@@ -18,22 +18,12 @@ public class PurulentTeaItem extends DrinkItem {
 	}
 	
 	@Override
-	public void affectConsumer(ItemStack stack, World worldIn, LivingEntity consumer) {
-		Iterator<StatusEffectInstance> itr = consumer.getStatusEffects().iterator();
-		ArrayList<StatusEffect> compatibleEffects = new ArrayList<>();
+	public void affectConsumer(ItemStack stack, World world, LivingEntity user) {
+		Collection<StatusEffect> activeStatusEffectList = user.getActiveStatusEffects().keySet();
 
-		while (itr.hasNext()) {
-			StatusEffectInstance effect = itr.next();
-			if (effect.isCurativeItem(new ItemStack(Items.MILK_BUCKET))) {
-				compatibleEffects.add(effect.getEffectType());
-			}
-		}
-
-		if (compatibleEffects.size() > 0) {
-			StatusEffectInstance selectedEffect = consumer.getEffect(compatibleEffects.get(worldIn.random.nextInt(compatibleEffects.size())));
-			if (selectedEffect != null && !net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.living.PotionEvent.PotionRemoveEvent(consumer, selectedEffect))) {
-				consumer.addStatusEffect(new StatusEffectInstance(selectedEffect.getEffectType(), selectedEffect.getDuration() + 400, selectedEffect.getAmplifier(), selectedEffect.isAmbient(), selectedEffect.isVisible(), selectedEffect.showIcon()));
-			}
+		if (!activeStatusEffectList.isEmpty()) {
+			Optional<StatusEffect> firstStatusEffect = activeStatusEffectList.stream().skip(world.getRandom().nextInt(activeStatusEffectList.size())).findFirst();
+			firstStatusEffect.ifPresent(l -> user.addStatusEffect(new StatusEffectInstance(user.getStatusEffect(l).getEffectType(), user.getStatusEffect(l).getDuration() + 400, user.getStatusEffect(l).getAmplifier(), user.getStatusEffect(l).isAmbient(), user.getStatusEffect(l).shouldShowParticles(), user.getStatusEffect(l).shouldShowIcon())));
 		}
 	}
 }

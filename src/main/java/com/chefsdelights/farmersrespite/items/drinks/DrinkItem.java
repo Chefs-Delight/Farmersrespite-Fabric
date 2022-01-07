@@ -25,13 +25,15 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import org.apache.http.util.TextUtils;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated
+@ApiStatus.ScheduledForRemoval
 public class DrinkItem extends ConsumableItem {
     private static final MutableText NO_EFFECTS;
     private final boolean hasFoodEffectTooltip;

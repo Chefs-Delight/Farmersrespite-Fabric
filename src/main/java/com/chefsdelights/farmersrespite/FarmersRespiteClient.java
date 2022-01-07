@@ -1,5 +1,7 @@
-package com.chefsdelights.farmersrespite.setup;
+package com.chefsdelights.farmersrespite;
 
+import com.chefsdelights.farmersrespite.registry.FRBlocks;
+import com.chefsdelights.farmersrespite.registry.FRContainerTypes;
 import com.umpaz.farmersrespite.FarmersRespite;
 import com.umpaz.farmersrespite.client.gui.KettleScreen;
 import com.umpaz.farmersrespite.registry.FRBlocks;
@@ -19,7 +21,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import vectorwing.farmersdelight.utils.ModAtlases;
 
 @Mod.EventBusSubscriber(modid = FarmersRespite.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ClientEventHandler {
+public class FarmersRespiteClient {
 	public static final ResourceLocation EMPTY_CONTAINER_SLOT_BOTTLE = new ResourceLocation(FarmersRespite.MODID, "item/empty_container_slot_bottle");
 
 	@SubscribeEvent
@@ -38,20 +40,20 @@ public class ClientEventHandler {
 	}
 
 	public static void init(final FMLClientSetupEvent event) {
-		RenderTypeLookup.setRenderLayer(FRBlocks.KETTLE.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.KETTLE), RenderType.cutout());
 		
-		RenderTypeLookup.setRenderLayer(FRBlocks.TEA_BUSH.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(FRBlocks.SMALL_TEA_BUSH.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(FRBlocks.WILD_TEA_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.TEA_BUSH), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.SMALL_TEA_BUSH), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.WILD_TEA_BUSH), RenderType.cutout());
 		
-		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_BUSH.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_BUSH_TOP.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM_DOUBLE.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM_MIDDLE.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_BUSH), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_BUSH_TOP), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM_DOUBLE), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(FRBlocks.COFFEE_STEM_MIDDLE), RenderType.cutout());
 
 		
-		ScreenManager.register(FRContainerTypes.KETTLE.get(), KettleScreen::new);
+		ScreenManager.register((FRContainerTypes.KETTLE), KettleScreen::new);
 
 	}
 }

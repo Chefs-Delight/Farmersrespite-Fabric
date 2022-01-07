@@ -46,7 +46,7 @@ public class SmallTeaBushBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return FRConfiguration.BONE_MEAL_TEA;
+        return FRConfiguration.BONE_MEAL_TEA.get();
     }
 
     @Override

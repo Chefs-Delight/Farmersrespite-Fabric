@@ -1,117 +1,111 @@
 package com.chefsdelights.farmersrespite.data;
 
+import com.chefsdelights.farmersrespite.FarmersRespite;
+import com.chefsdelights.farmersrespite.data.recipes.BrewingRecipes;
+import com.chefsdelights.farmersrespite.data.recipes.FRCookingRecipes;
+import com.chefsdelights.farmersrespite.data.recipes.FRCuttingRecipes;
+import com.chefsdelights.farmersrespite.registry.FRItems;
+import com.chefsdelights.farmersrespite.utils.CTags;
+import com.nhoryzon.mc.farmersdelight.registry.ItemsRegistry;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipesProvider;
+import net.minecraft.advancement.criterion.InventoryChangedCriterion;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
+
 import java.util.function.Consumer;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import com.umpaz.farmersrespite.FarmersRespite;
-import com.umpaz.farmersrespite.data.recipes.BrewingRecipes;
-import com.umpaz.farmersrespite.data.recipes.FRCookingRecipes;
-import com.umpaz.farmersrespite.data.recipes.FRCuttingRecipes;
-import com.umpaz.farmersrespite.registry.FRItems;
-
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
-import vectorwing.farmersdelight.registry.ModItems;
-import vectorwing.farmersdelight.utils.tags.ForgeTags;
-
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
-public class Recipes extends RecipeProvider {
-	public Recipes(DataGenerator generator) {
+public class Recipes extends FabricRecipesProvider {
+	public Recipes(FabricDataGenerator generator) {
 		super(generator);
 	}
 
 	@Override
-	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
-		BrewingRecipes.register(consumer);
-		FRCuttingRecipes.register(consumer);
-		FRCookingRecipes.register(consumer);
-		recipesCrafted(consumer);
+	protected void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
+		BrewingRecipes.register(exporter);
+		FRCuttingRecipes.register(exporter);
+		FRCookingRecipes.register(exporter);
+		recipesCrafted(exporter);
 	}
 	
-	private void recipesCrafted(Consumer<IFinishedRecipe> consumer) {
-		ShapelessRecipeBuilder.shapeless(FRItems.COFFEE_CAKE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.requires(FRItems.COFFEE_CAKE_SLICE.get())
-		.unlockedBy("has_cake_slice", InventoryChangeTrigger.Instance.hasItems(FRItems.COFFEE_CAKE_SLICE.get()))
-		.save(consumer, new ResourceLocation(FarmersRespite.MODID, "coffee_cake_from_slices"));
-		ShapelessRecipeBuilder.shapeless(FRItems.BLACK_COD.get())
-		.requires(ForgeTags.COOKED_FISHES_COD)
-		.requires(FRItems.BLACK_TEA_LEAVES.get())
-		.requires(Items.BOWL)
-		.requires(ForgeTags.CROPS_CABBAGE)
-		.requires(ForgeTags.CROPS_RICE)
-		.unlockedBy("has_cod", InventoryChangeTrigger.Instance.hasItems(Items.COOKED_COD))
-		.save(consumer);
-		ShapelessRecipeBuilder.shapeless(Items.RED_DYE)
-		.requires(FRItems.COFFEE_BERRIES.get())
-		.unlockedBy("has_berries", InventoryChangeTrigger.Instance.hasItems(FRItems.COFFEE_BERRIES.get()))
-		.save(consumer);
+	private void recipesCrafted(Consumer<RecipeJsonProvider> exporter) {
+		ShapelessRecipeJsonFactory.create(FRItems.COFFEE_CAKE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+				.input(FRItems.COFFEE_CAKE_SLICE)
+		.criterion("has_cake_slice", InventoryChangedCriterion.Conditions.items(FRItems.COFFEE_CAKE_SLICE))
+		.offerTo(exporter, new Identifier(FarmersRespite.MOD_ID, "coffee_cake_from_slices"));
+		ShapelessRecipeJsonFactory.create(FRItems.BLACK_COD)
+		.input(CTags.COOKED_FISHES_COD)
+		.input(FRItems.BLACK_TEA_LEAVES)
+		.input(Items.BOWL)
+		.input(CTags.CROPS_CABBAGE)
+		.input(CTags.CROPS_RICE)
+		.criterion("has_cod", InventoryChangedCriterion.Conditions.items(Items.COOKED_COD))
+		.offerTo(exporter);
+		ShapelessRecipeJsonFactory.create(Items.RED_DYE)
+		.input(FRItems.COFFEE_BERRIES)
+		.criterion("has_berries", InventoryChangedCriterion.Conditions.items(FRItems.COFFEE_BERRIES))
+		.offerTo(exporter);
 		
-		ShapedRecipeBuilder.shaped(FRItems.KETTLE.get())
+		ShapedRecipeJsonFactory.create(FRItems.KETTLE)
 		.pattern("bSb")
 		.pattern("iWi")
 		.pattern("iii")
-		.define('b', Items.STICK)
-		.define('i', Items.BRICK)
-		.define('S', Items.LEATHER)
-		.define('W', Items.BUCKET)
-		.unlockedBy("has_brick", InventoryChangeTrigger.Instance.hasItems(Items.BRICK))
-		.save(consumer);
-		ShapedRecipeBuilder.shaped(FRItems.COFFEE_CAKE.get())
+		.input('b', Items.STICK)
+		.input('i', Items.BRICK)
+		.input('S', Items.LEATHER)
+		.input('W', Items.BUCKET)
+		.criterion("has_brick", InventoryChangedCriterion.Conditions.items(Items.BRICK))
+		.offerTo(exporter);
+		ShapedRecipeJsonFactory.create(FRItems.COFFEE_CAKE)
 		.pattern("bSb")
 		.pattern("xWx")
 		.pattern("iii")
-		.define('b', ForgeTags.MILK)
-		.define('x', FRItems.COFFEE_BEANS.get())
-		.define('i', Items.WHEAT)
-		.define('S', Items.SUGAR)
-		.define('W', Items.EGG)
-		.unlockedBy("has_beans", InventoryChangeTrigger.Instance.hasItems(FRItems.COFFEE_BEANS.get()))
-		.save(consumer);
-		ShapedRecipeBuilder.shaped(FRItems.ROSE_HIP_PIE.get())
+		.input('b', CTags.MILK)
+		.input('x', FRItems.COFFEE_BEANS)
+		.input('i', Items.WHEAT)
+		.input('S', Items.SUGAR)
+		.input('W', Items.EGG)
+		.criterion("has_beans", InventoryChangedCriterion.Conditions.items(FRItems.COFFEE_BEANS))
+		.offerTo(exporter);
+		ShapedRecipeJsonFactory.create(FRItems.ROSE_HIP_PIE)
 		.pattern("bSb")
 		.pattern("xxx")
 		.pattern("iWi")
-		.define('b', ForgeTags.MILK)
-		.define('x', FRItems.ROSE_HIPS.get())
-		.define('i', Items.SUGAR)
-		.define('S', Items.HONEY_BOTTLE)
-		.define('W', ModItems.PIE_CRUST.get())
-		.unlockedBy("has_pie_crust", InventoryChangeTrigger.Instance.hasItems(ModItems.PIE_CRUST.get()))
-		.save(consumer);
-		ShapedRecipeBuilder.shaped(FRItems.GREEN_TEA_COOKIE.get(), 8)
+		.input('b', CTags.MILK)
+		.input('x', FRItems.ROSE_HIPS)
+		.input('i', Items.SUGAR)
+		.input('S', Items.HONEY_BOTTLE)
+		.input('W', ItemsRegistry.PIE_CRUST.get())
+		.criterion("has_pie_crust", InventoryChangedCriterion.Conditions.items(ItemsRegistry.PIE_CRUST.get()))
+		.offerTo(exporter);
+		ShapedRecipeJsonFactory.create(FRItems.GREEN_TEA_COOKIE, 8)
 		.pattern("bSb")
-		.define('b', Items.WHEAT)
-		.define('S', FRItems.GREEN_TEA_LEAVES.get())
-		.unlockedBy("has_leaves", InventoryChangeTrigger.Instance.hasItems(FRItems.GREEN_TEA_LEAVES.get()))
-		.save(consumer);
-		ShapedRecipeBuilder.shaped(FRItems.NETHER_WART_SOURDOUGH.get())
+		.input('b', Items.WHEAT)
+		.input('S', FRItems.GREEN_TEA_LEAVES)
+		.criterion("has_leaves", InventoryChangedCriterion.Conditions.items(FRItems.GREEN_TEA_LEAVES))
+		.offerTo(exporter);
+		ShapedRecipeJsonFactory.create(FRItems.NETHER_WART_SOURDOUGH)
 		.pattern("##")
 		.pattern("bS")
-		.define('#', Items.NETHER_WART)
-		.define('b', Items.RED_MUSHROOM)
-		.define('S', Items.BROWN_MUSHROOM)
-		.unlockedBy("has_wart", InventoryChangeTrigger.Instance.hasItems(Items.NETHER_WART))
-		.save(consumer);
-		ShapedRecipeBuilder.shaped(FRItems.ROSE_HIP_PIE.get())
+		.input('#', Items.NETHER_WART)
+		.input('b', Items.RED_MUSHROOM)
+		.input('S', Items.BROWN_MUSHROOM)
+		.criterion("has_wart", InventoryChangedCriterion.Conditions.items(Items.NETHER_WART))
+		.offerTo(exporter);
+		ShapedRecipeJsonFactory.create(FRItems.ROSE_HIP_PIE)
 		.pattern("##")
 		.pattern("##")
-		.define('#', FRItems.ROSE_HIP_PIE_SLICE.get())
-		.unlockedBy("has_rose_hip_pie_slice", InventoryChangeTrigger.Instance.hasItems(FRItems.ROSE_HIP_PIE_SLICE.get()))
-		.save(consumer, new ResourceLocation(FarmersRespite.MODID, "rose_hip_pie_from_slices"));
+		.input('#', FRItems.ROSE_HIP_PIE_SLICE)
+		.criterion("has_rose_hip_pie_slice", InventoryChangedCriterion.Conditions.items(FRItems.ROSE_HIP_PIE_SLICE))
+		.offerTo(exporter, new Identifier(FarmersRespite.MOD_ID, "rose_hip_pie_from_slices"));
 	}
 }

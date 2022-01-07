@@ -110,7 +110,7 @@ public class CoffeeDoubleStemBlock extends PlantBlock implements Fertilizable {
 	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
 		int i = state.get(AGE);
 		int j = state.get(AGE1);
-		return FRConfiguration.BONE_MEAL_COFFEE && !(i == 2 && j ==2);
+		return FRConfiguration.BONE_MEAL_COFFEE.get() && !(i == 2 && j ==2);
 	}
 
 	@Override

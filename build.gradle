@@ -39,41 +39,52 @@ repositories {
     maven {
         url = terraformers()
     }
+    maven { url = "https://maven.devos.community/releases/" }
+    maven { url = "https://maven.devos.community/snapshots/" }
 }
 
 dependencies {
+    // Required //
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.minecraft_version}+build.${project.yarn_build}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
-    modImplementation "maven.modrinth:sodium:${project.sodium_version}"
+
+    // Api's //
     modImplementation "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
-    modRuntime "curse.maven:farmers-delight-fabric-482834:${project.fd_version}"
-    modImplementation "curse.maven:forge-config-api-port-fabric-547434:3562302"
-    implementation 'com.electronwill.night-config:core:3.6.3'
-    implementation 'com.electronwill.night-config:toml:3.6.3'
 
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
-    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+    modImplementation(include("me.alphamode:ForgeTags:${project.forge_tags_version}"))
+
+    modImplementation(include("curse.maven:forge-config-api-port-fabric-547434:${project.config_api_version}"))
+    implementation 'com.electronwill.night-config:core:3.6.3'
+    implementation 'com.electronwill.night-config:toml:3.6.3'
+
+    // Runtime Utilites //
+    modRuntimeOnly "maven.modrinth:sodium:${project.sodium_version}"
+    modRuntimeOnly "com.terraformersmc:modmenu:${project.mod_menu_version}"
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
 }
 
 loom {
     accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
 
-//    runs {
-//        data {
-//            server()
-//
-//            vmArgs(
-//                    "-D${project.mod_id}.datagen=true",
-//                    "-D${project.mod_id}.datagen.path=\"${project.file("src/generated/resources")};${project.file("$buildDir/resources/main")}\""
-//            )
-//        }
-//    }
+    runs {
+        datagen {
+            server()
+
+            name "Minecraft Data"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+
+            runDir "build/datagen"
+        }
+    }
 }
+assemble.dependsOn runDatagen
 
 processResources {
     inputs.property "version", project.version
@@ -83,9 +94,9 @@ processResources {
     }
 }
 
-//sourceSets.main.resources {
-//    srcDirs += "$projectDir/src/generated/resources"
-//}
+sourceSets.main.resources {
+    srcDirs += "$projectDir/src/generated/resources"
+}
 
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 17

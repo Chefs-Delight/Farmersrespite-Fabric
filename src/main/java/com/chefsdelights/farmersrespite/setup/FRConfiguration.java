@@ -7,8 +7,8 @@ public class FRConfiguration {
 
 	// COMMON
 	public static final String CATEGORY_SETTINGS = "settings";
-	public static boolean BONE_MEAL_TEA;
-	public static boolean BONE_MEAL_COFFEE;
+	public static ForgeConfigSpec.BooleanValue BONE_MEAL_TEA;
+	public static ForgeConfigSpec.BooleanValue BONE_MEAL_COFFEE;
 
 	static {
 		ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();

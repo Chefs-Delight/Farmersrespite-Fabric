@@ -9,6 +9,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -118,7 +119,7 @@ public class KettleBlockEntity extends BlockEntity implements NamedScreenHandler
 		return compound;
 	}
 
-	public CompoundNBT writeMeal(CompoundNBT compound) {
+	public NbtCompound writeMeal(NbtCompound compound) {
 		if (getMeal().isEmpty()) return compound;
 
 		ItemStackHandler drops = new ItemStackHandler(INVENTORY_SIZE);

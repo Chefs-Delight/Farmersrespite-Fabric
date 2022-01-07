@@ -129,7 +129,7 @@ public class CoffeeBushBlock extends PlantBlock implements Fertilizable {
 
 	@Override
 	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-		return FRConfiguration.BONE_MEAL_COFFEE;
+		return FRConfiguration.BONE_MEAL_COFFEE.get();
 	}
 
 	@Override

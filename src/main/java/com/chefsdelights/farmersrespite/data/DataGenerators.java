@@ -1,21 +1,12 @@
 package com.chefsdelights.farmersrespite.data;
 
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import com.umpaz.farmersrespite.FarmersRespite;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber(modid = FarmersRespite.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
-	@SubscribeEvent
-	public static void gatherData(GatherDataEvent event) {
-		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper helper = event.getExistingFileHelper();
-		if (event.includeServer()) {
-			generator.addProvider(new Recipes(generator));
-		}
+public class DataGenerators implements DataGeneratorEntrypoint {
+	@Override
+	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+		fabricDataGenerator.addProvider(Recipes::new);
 	}
 }

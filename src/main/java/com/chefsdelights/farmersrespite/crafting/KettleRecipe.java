@@ -1,32 +1,12 @@
 package com.chefsdelights.farmersrespite.crafting;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.umpaz.farmersrespite.FarmersRespite;
-
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class KettleRecipe implements Recipe<Inventory> {
 	public static final int INPUT_SLOTS = 2;

@@ -1,29 +1,23 @@
 package com.chefsdelights.farmersrespite.data.builder;
 
-import java.util.List;
-import java.util.function.Consumer;
-
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
+import com.chefsdelights.farmersrespite.FarmersRespite;
+import com.chefsdelights.farmersrespite.registry.FRRecipeSerializers;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.umpaz.farmersrespite.FarmersRespite;
-import com.umpaz.farmersrespite.crafting.KettleRecipe;
-
-import mezz.jei.api.MethodsReturnNonnullByDefault;
-import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Nullable;
 
-@MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
+import java.util.List;
+import java.util.function.Consumer;
+
 public class KettleRecipeBuilder {
 	private final List<Ingredient> ingredients = Lists.newArrayList();
 	private final Item result;
@@ -33,7 +27,7 @@ public class KettleRecipeBuilder {
 	private final Item container;
 	private final boolean needWater;
 
-	private KettleRecipeBuilder(IItemProvider resultIn, int count, int brewingTime, float experience, boolean needWater, @Nullable IItemProvider container) {
+	private KettleRecipeBuilder(ItemConvertible resultIn, int count, int brewingTime, float experience, boolean needWater, @Nullable ItemConvertible container) {
 		this.result = resultIn.asItem();
 		this.count = count;
 		this.brewingTime = brewingTime;
@@ -42,25 +36,25 @@ public class KettleRecipeBuilder {
 		this.needWater = needWater;
 	}
 
-	public static KettleRecipeBuilder kettleRecipe(IItemProvider mainResult, int count, int brewingTime, float experience, boolean needWater) {
+	public static KettleRecipeBuilder kettleRecipe(ItemConvertible mainResult, int count, int brewingTime, float experience, boolean needWater) {
 		return new KettleRecipeBuilder(mainResult, count, brewingTime, experience, needWater, null);
 	}
 
-	public static KettleRecipeBuilder kettleRecipe(IItemProvider mainResult, int count, int brewingTime, float experience, boolean needWater, IItemProvider container) {
+	public static KettleRecipeBuilder kettleRecipe(ItemConvertible mainResult, int count, int brewingTime, float experience, boolean needWater, ItemConvertible container) {
 		return new KettleRecipeBuilder(mainResult, count, brewingTime, experience, needWater, container);
 	}
 
-	public KettleRecipeBuilder addIngredient(ITag<Item> tagIn) {
-		return this.addIngredient(Ingredient.of(tagIn));
+	public KettleRecipeBuilder addIngredient(Tag<Item> tagIn) {
+		return this.addIngredient(Ingredient.fromTag(tagIn));
 	}
 
-	public KettleRecipeBuilder addIngredient(IItemProvider itemIn) {
+	public KettleRecipeBuilder addIngredient(ItemConvertible itemIn) {
 		return this.addIngredient(itemIn, 1);
 	}
 
-	public KettleRecipeBuilder addIngredient(IItemProvider itemIn, int quantity) {
+	public KettleRecipeBuilder addIngredient(ItemConvertible itemIn, int quantity) {
 		for (int i = 0; i < quantity; ++i) {
-			this.addIngredient(Ingredient.of(itemIn));
+			this.addIngredient(Ingredient.ofItems(itemIn));
 		}
 		return this;
 	}
@@ -76,27 +70,26 @@ public class KettleRecipeBuilder {
 		return this;
 	}
 
-	public void build(Consumer<IFinishedRecipe> consumerIn) {
-		ResourceLocation location = ForgeRegistries.ITEMS.getKey(this.result);
-		this.build(consumerIn, FarmersRespite.MODID + ":brewing/" + location.getPath());
+	public void build(Consumer<RecipeJsonProvider> exporter) {
+		Identifier location = Registry.ITEM.getId(this.result);
+		this.build(exporter, FarmersRespite.MOD_ID + ":brewing/" + location.getPath());
 	}
 
-	public void build(Consumer<IFinishedRecipe> consumerIn, String save) {
-		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-		if ((new ResourceLocation(save)).equals(resourcelocation)) {
+	public void build(Consumer<RecipeJsonProvider> exporter, String save) {
+		Identifier resourcelocation = Registry.ITEM.getId(this.result);
+		if ((new Identifier(save)).equals(resourcelocation)) {
 			throw new IllegalStateException("Brewing Recipe " + save + " should remove its 'save' argument");
 		} else {
-			this.build(consumerIn, new ResourceLocation(save));
+			this.build(exporter, new Identifier(save));
 		}
 	}
 
-	public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
-		consumerIn.accept(new KettleRecipeBuilder.Result(id, this.result, this.count, this.ingredients, this.brewingTime, this.experience, this.needWater, this.container));
+	public void build(Consumer<RecipeJsonProvider> exporter, Identifier id) {
+		exporter.accept(new KettleRecipeBuilder.Result(id, this.result, this.count, this.ingredients, this.brewingTime, this.experience, this.needWater, this.container));
 	}
 
-	public static class Result implements IFinishedRecipe
-	{
-		private final ResourceLocation id;
+	public static class Result implements RecipeJsonProvider {
+		private final Identifier id;
 		private final List<Ingredient> ingredients;
 		private final Item result;
 		private final int count;
@@ -105,7 +98,7 @@ public class KettleRecipeBuilder {
 		private final boolean needWater;
 		private final Item container;
 
-		public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int brewingTimeIn, float experienceIn, boolean needWaterIn, @Nullable Item containerIn) {
+		public Result(Identifier idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int brewingTimeIn, float experienceIn, boolean needWaterIn, @Nullable Item containerIn) {
 			this.id = idIn;
 			this.ingredients = ingredientsIn;
 			this.result = resultIn;
@@ -117,7 +110,7 @@ public class KettleRecipeBuilder {
 		}
 
 		@Override
-		public void serializeRecipeData(JsonObject json) {
+		public void serialize(JsonObject json) {
 			JsonArray arrayIngredients = new JsonArray();
 
 			for (Ingredient ingredient : this.ingredients) {
@@ -126,7 +119,7 @@ public class KettleRecipeBuilder {
 			json.add("ingredients", arrayIngredients);
 
 			JsonObject objectResult = new JsonObject();
-			objectResult.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
+			objectResult.addProperty("item", Registry.ITEM.getId(this.result).toString());
 			if (this.count > 1) {
 				objectResult.addProperty("count", this.count);
 			}
@@ -134,7 +127,7 @@ public class KettleRecipeBuilder {
 
 			if (this.container != null) {
 				JsonObject objectContainer = new JsonObject();
-				objectContainer.addProperty("item", ForgeRegistries.ITEMS.getKey(this.container).toString());
+				objectContainer.addProperty("item", Registry.ITEM.getId(this.container).toString());
 				json.add("container", objectContainer);
 			}
 			if (this.experience > 0) {
@@ -145,24 +138,24 @@ public class KettleRecipeBuilder {
 		}
 
 		@Override
-		public ResourceLocation getId() {
+		public Identifier getRecipeId() {
 			return this.id;
 		}
 
 		@Override
-		public IRecipeSerializer<?> getType() {
-			return KettleRecipe.SERIALIZER;
+		public RecipeSerializer<?> getSerializer() {
+			return FRRecipeSerializers.BREWING_RECIPE_SERIALIZER.serializer();
 		}
 
 		@Nullable
 		@Override
-		public JsonObject serializeAdvancement() {
+		public JsonObject toAdvancementJson() {
 			return null;
 		}
 
 		@Nullable
 		@Override
-		public ResourceLocation getAdvancementId() {
+		public Identifier getAdvancementId() {
 			return null;
 		}
 	}

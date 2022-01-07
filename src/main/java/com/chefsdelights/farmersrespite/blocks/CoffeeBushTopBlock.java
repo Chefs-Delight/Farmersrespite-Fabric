@@ -156,12 +156,12 @@ public class CoffeeBushTopBlock extends PlantBlock implements Fertilizable {
 		if (state.get(HALF) == DoubleBlockHalf.LOWER) {
 			BlockPos blockPos = pos.down();
 			BlockState blockState = world.getBlockState(blockPos);
-			return FRConfiguration.BONE_MEAL_COFFEE && blockState.getBlock().equals(FRBlocks.COFFEE_STEM);
+			return FRConfiguration.BONE_MEAL_COFFEE.get() && blockState.getBlock().equals(FRBlocks.COFFEE_STEM);
 		}
 		if (state.get(HALF) == DoubleBlockHalf.UPPER) {
 			BlockPos blockPos = pos.down(2);
 			BlockState blockState = world.getBlockState(blockPos);
-			return FRConfiguration.BONE_MEAL_COFFEE && blockState.getBlock().equals(FRBlocks.COFFEE_STEM);
+			return FRConfiguration.BONE_MEAL_COFFEE.get() && blockState.getBlock().equals(FRBlocks.COFFEE_STEM);
 		}
 		return false;
 	}

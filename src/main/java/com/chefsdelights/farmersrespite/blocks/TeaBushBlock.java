@@ -161,7 +161,7 @@ public class TeaBushBlock extends PlantBlock implements Fertilizable {
             }
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             dropStack(world, pos, new ItemStack(Items.STICK, k));
-            heldStack.damage(1, player, (p_226874_1_) -> player.broadcastBreakEvent(handIn));
+            heldStack.damage(1, player, (p_226874_1_) -> player.broadcastBreakEvent(hand));
             return ActionResult.success(world.isClient);
         } else {
             return super.onUse(state, world, pos, player, hand, hit);
@@ -172,7 +172,7 @@ public class TeaBushBlock extends PlantBlock implements Fertilizable {
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
         int i = state.get(AGE);
         if (i != 3) {
-            return FRConfiguration.BONE_MEAL_TEA;
+            return FRConfiguration.BONE_MEAL_TEA.get();
         }
         return false;
     }
