@@ -1,111 +1,117 @@
-package com.chefsdelights.farmersrespite.data;
-
-import com.chefsdelights.farmersrespite.FarmersRespite;
-import com.chefsdelights.farmersrespite.data.recipes.BrewingRecipes;
-import com.chefsdelights.farmersrespite.data.recipes.FRCookingRecipes;
-import com.chefsdelights.farmersrespite.data.recipes.FRCuttingRecipes;
-import com.chefsdelights.farmersrespite.registry.FRItems;
-import com.chefsdelights.farmersrespite.utils.CTags;
-import com.nhoryzon.mc.farmersdelight.registry.ItemsRegistry;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipesProvider;
-import net.minecraft.advancement.criterion.InventoryChangedCriterion;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
-import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
-
-import java.util.function.Consumer;
-
-public class Recipes extends FabricRecipesProvider {
-	public Recipes(FabricDataGenerator generator) {
-		super(generator);
-	}
-
-	@Override
-	protected void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
-		BrewingRecipes.register(exporter);
-		FRCuttingRecipes.register(exporter);
-		FRCookingRecipes.register(exporter);
-		recipesCrafted(exporter);
-	}
-	
-	private void recipesCrafted(Consumer<RecipeJsonProvider> exporter) {
-		ShapelessRecipeJsonFactory.create(FRItems.COFFEE_CAKE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-				.input(FRItems.COFFEE_CAKE_SLICE)
-		.criterion("has_cake_slice", InventoryChangedCriterion.Conditions.items(FRItems.COFFEE_CAKE_SLICE))
-		.offerTo(exporter, new Identifier(FarmersRespite.MOD_ID, "coffee_cake_from_slices"));
-		ShapelessRecipeJsonFactory.create(FRItems.BLACK_COD)
-		.input(CTags.COOKED_FISHES_COD)
-		.input(FRItems.BLACK_TEA_LEAVES)
-		.input(Items.BOWL)
-		.input(CTags.CROPS_CABBAGE)
-		.input(CTags.CROPS_RICE)
-		.criterion("has_cod", InventoryChangedCriterion.Conditions.items(Items.COOKED_COD))
-		.offerTo(exporter);
-		ShapelessRecipeJsonFactory.create(Items.RED_DYE)
-		.input(FRItems.COFFEE_BERRIES)
-		.criterion("has_berries", InventoryChangedCriterion.Conditions.items(FRItems.COFFEE_BERRIES))
-		.offerTo(exporter);
-		
-		ShapedRecipeJsonFactory.create(FRItems.KETTLE)
-		.pattern("bSb")
-		.pattern("iWi")
-		.pattern("iii")
-		.input('b', Items.STICK)
-		.input('i', Items.BRICK)
-		.input('S', Items.LEATHER)
-		.input('W', Items.BUCKET)
-		.criterion("has_brick", InventoryChangedCriterion.Conditions.items(Items.BRICK))
-		.offerTo(exporter);
-		ShapedRecipeJsonFactory.create(FRItems.COFFEE_CAKE)
-		.pattern("bSb")
-		.pattern("xWx")
-		.pattern("iii")
-		.input('b', CTags.MILK)
-		.input('x', FRItems.COFFEE_BEANS)
-		.input('i', Items.WHEAT)
-		.input('S', Items.SUGAR)
-		.input('W', Items.EGG)
-		.criterion("has_beans", InventoryChangedCriterion.Conditions.items(FRItems.COFFEE_BEANS))
-		.offerTo(exporter);
-		ShapedRecipeJsonFactory.create(FRItems.ROSE_HIP_PIE)
-		.pattern("bSb")
-		.pattern("xxx")
-		.pattern("iWi")
-		.input('b', CTags.MILK)
-		.input('x', FRItems.ROSE_HIPS)
-		.input('i', Items.SUGAR)
-		.input('S', Items.HONEY_BOTTLE)
-		.input('W', ItemsRegistry.PIE_CRUST.get())
-		.criterion("has_pie_crust", InventoryChangedCriterion.Conditions.items(ItemsRegistry.PIE_CRUST.get()))
-		.offerTo(exporter);
-		ShapedRecipeJsonFactory.create(FRItems.GREEN_TEA_COOKIE, 8)
-		.pattern("bSb")
-		.input('b', Items.WHEAT)
-		.input('S', FRItems.GREEN_TEA_LEAVES)
-		.criterion("has_leaves", InventoryChangedCriterion.Conditions.items(FRItems.GREEN_TEA_LEAVES))
-		.offerTo(exporter);
-		ShapedRecipeJsonFactory.create(FRItems.NETHER_WART_SOURDOUGH)
-		.pattern("##")
-		.pattern("bS")
-		.input('#', Items.NETHER_WART)
-		.input('b', Items.RED_MUSHROOM)
-		.input('S', Items.BROWN_MUSHROOM)
-		.criterion("has_wart", InventoryChangedCriterion.Conditions.items(Items.NETHER_WART))
-		.offerTo(exporter);
-		ShapedRecipeJsonFactory.create(FRItems.ROSE_HIP_PIE)
-		.pattern("##")
-		.pattern("##")
-		.input('#', FRItems.ROSE_HIP_PIE_SLICE)
-		.criterion("has_rose_hip_pie_slice", InventoryChangedCriterion.Conditions.items(FRItems.ROSE_HIP_PIE_SLICE))
-		.offerTo(exporter, new Identifier(FarmersRespite.MOD_ID, "rose_hip_pie_from_slices"));
-	}
-}
+//package com.chefsdelights.farmersrespite.data;
+//
+//import com.farmersrespite.core.FarmersRespite;
+//import com.farmersrespite.core.registry.FRItems;
+//import com.farmersrespite.data.recipe.BrewingRecipes;
+//import com.farmersrespite.data.recipe.FRCookingRecipes;
+//import com.farmersrespite.data.recipe.FRCuttingRecipes;
+//import net.minecraft.MethodsReturnNonnullByDefault;
+//import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+//import net.minecraft.data.DataGenerator;
+//import net.minecraft.data.recipes.FinishedRecipe;
+//import net.minecraft.data.recipes.RecipeProvider;
+//import net.minecraft.data.recipes.ShapedRecipeBuilder;
+//import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+//import net.minecraft.resources.ResourceLocation;
+//import net.minecraft.world.item.Items;
+//import vectorwing.farmersdelight.common.registry.ModItems;
+//import vectorwing.farmersdelight.common.tag.ForgeTags;
+//
+//import javax.annotation.ParametersAreNonnullByDefault;
+//import java.util.function.Consumer;
+//
+//@ParametersAreNonnullByDefault
+//@MethodsReturnNonnullByDefault
+//public class Recipes extends RecipeProvider
+//{
+//	public Recipes(DataGenerator generator) {
+//		super(generator);
+//	}
+//
+//	@Override
+//	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+//		BrewingRecipes.register(consumer);
+//		FRCookingRecipes.register(consumer);
+//		FRCuttingRecipes.register(consumer);
+//		recipesCrafted(consumer);
+//
+//	}
+//
+//	private void recipesCrafted(Consumer<FinishedRecipe> consumer) {
+//		ShapelessRecipeBuilder.shapeless(FRItems.COFFEE_CAKE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.requires(FRItems.COFFEE_CAKE_SLICE.get())
+//		.unlockedBy("has_cake_slice", InventoryChangeTrigger.TriggerInstance.hasItems(FRItems.COFFEE_CAKE_SLICE.get()))
+//		.save(consumer, new ResourceLocation(FarmersRespite.MODID, "coffee_cake_from_slices"));
+//		ShapelessRecipeBuilder.shapeless(FRItems.BLACK_COD.get())
+//		.requires(ForgeTags.COOKED_FISHES_COD)
+//		.requires(FRItems.BLACK_TEA_LEAVES.get())
+//		.requires(Items.BOWL)
+//		.requires(ForgeTags.CROPS_CABBAGE)
+//		.requires(ForgeTags.CROPS_RICE)
+//		.unlockedBy("has_cod", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COOKED_COD))
+//		.save(consumer);
+//		ShapelessRecipeBuilder.shapeless(Items.RED_DYE)
+//		.requires(FRItems.COFFEE_BERRIES.get())
+//		.unlockedBy("has_berries", InventoryChangeTrigger.TriggerInstance.hasItems(FRItems.COFFEE_BERRIES.get()))
+//		.save(consumer);
+//
+//		ShapedRecipeBuilder.shaped(FRItems.KETTLE.get())
+//		.pattern("sls")
+//		.pattern("bBb")
+//		.pattern("bbb")
+//		.define('s', Items.STICK)
+//		.define('l', Items.LEATHER)
+//		.define('b', Items.COPPER_INGOT)
+//		.define('B', Items.BUCKET)
+//		.unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+//		.save(consumer);
+//		ShapedRecipeBuilder.shaped(FRItems.COFFEE_CAKE.get())
+//		.pattern("msm")
+//		.pattern("cec")
+//		.pattern("www")
+//		.define('m', ForgeTags.MILK)
+//		.define('s', Items.SUGAR)
+//		.define('c', FRItems.COFFEE_BEANS.get())
+//		.define('e', Items.EGG)
+//		.define('w', Items.WHEAT)
+//		.unlockedBy("has_beans", InventoryChangeTrigger.TriggerInstance.hasItems(FRItems.COFFEE_BEANS.get()))
+//		.save(consumer);
+//		ShapedRecipeBuilder.shaped(FRItems.ROSE_HIP_PIE.get())
+//		.pattern("mhm")
+//		.pattern("rrr")
+//		.pattern("sps")
+//		.define('m', ForgeTags.MILK)
+//		.define('h', Items.HONEY_BOTTLE)
+//		.define('r', FRItems.ROSE_HIPS.get())
+//		.define('s', Items.SUGAR)
+//		.define('p', ModItems.PIE_CRUST.get())
+//		.unlockedBy("has_pie_crust", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.PIE_CRUST.get()))
+//		.save(consumer);
+//		ShapedRecipeBuilder.shaped(FRItems.GREEN_TEA_COOKIE.get(), 8)
+//		.pattern("wgw")
+//		.define('w', Items.WHEAT)
+//		.define('g', FRItems.GREEN_TEA_LEAVES.get())
+//		.unlockedBy("has_leaves", InventoryChangeTrigger.TriggerInstance.hasItems(FRItems.GREEN_TEA_LEAVES.get()))
+//		.save(consumer);
+//		ShapedRecipeBuilder.shaped(FRItems.NETHER_WART_SOURDOUGH.get())
+//		.pattern("nn")
+//		.pattern("rb")
+//		.define('n', Items.NETHER_WART)
+//		.define('r', Items.RED_MUSHROOM)
+//		.define('b', Items.BROWN_MUSHROOM)
+//		.unlockedBy("has_wart", InventoryChangeTrigger.TriggerInstance.hasItems(Items.NETHER_WART))
+//		.save(consumer);
+//		ShapedRecipeBuilder.shaped(FRItems.ROSE_HIP_PIE.get())
+//		.pattern("rr")
+//		.pattern("rr")
+//		.define('r', FRItems.ROSE_HIP_PIE_SLICE.get())
+//		.unlockedBy("has_rose_hip_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(FRItems.ROSE_HIP_PIE_SLICE.get()))
+//		.save(consumer, new ResourceLocation(FarmersRespite.MODID, "rose_hip_pie_from_slices"));
+//	}
+//}

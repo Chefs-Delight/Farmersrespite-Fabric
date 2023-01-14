@@ -26,11 +26,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.chefsdelights.farmersrespite.FarmersRespite"
+      "com.chefsdelights.farmersrespite.core.FarmersRespite"
     ],
-    "client": [],
+    "client": [
+      "com.chefsdelights.farmersrespite.client.FRClientSetup"
+    ],
     "rei"   : [
-      "com.chefsdelights.farmersrespite.integration.rei.FarmersRespiteReiPlugin"
     ]
   },
   "mixins": [
@@ -39,9 +40,9 @@
   "accessWidener": "farmersrespite.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.12.6",
+    "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.18.2",
     "java": ">=17",
     "forgeconfigapiport": "*"
   },
