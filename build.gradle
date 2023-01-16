@@ -60,8 +60,8 @@ dependencies {
     modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${project.forge_tags_version}"))
 
     modImplementation(include("curse.maven:forge-config-api-port-fabric-547434:${project.config_api_version}"))
-    implementation 'com.electronwill.night-config:core:3.6.3'
-    implementation 'com.electronwill.night-config:toml:3.6.3'
+    implementation 'com.electronwill.night-config:core:3.6.6'
+    implementation 'com.electronwill.night-config:toml:3.6.6'
 
     implementation("com.github.LlamaLad7:MixinExtras:0.1.1")
     annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
@@ -72,12 +72,10 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
 
-    //modRuntimeOnly "dev.emi:emi:${emi_version}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
-
     // Runtime Utilites //
     modRuntimeOnly "com.terraformersmc:modmenu:${project.mod_menu_version}"
-//    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    //modRuntimeOnly "dev.emi:emi:${emi_version}"
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 
     implementation 'javax.annotation:javax.annotation-api:1.2'
 

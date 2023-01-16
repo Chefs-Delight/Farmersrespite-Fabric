@@ -24,9 +24,9 @@ public class PurulentTeaItem extends DrinkableItem {
 		Iterator<MobEffectInstance> itr = consumer.getActiveEffects().iterator();
 		ArrayList<MobEffect> compatibleEffects = new ArrayList<>();
 		while (itr.hasNext()) {
-			MobEffectInstanceExtensions effect = (MobEffectInstanceExtensions) itr.next();
+			MobEffectInstance effect = itr.next();
 			if (effect.isCurativeItem(new ItemStack(Items.MILK_BUCKET))) {
-				compatibleEffects.add(((MobEffectInstance)effect).getEffect());
+				compatibleEffects.add(effect.getEffect());
 			}
 		}
 

@@ -4,11 +4,11 @@ import com.chefsdelights.farmersrespite.common.block.state.WitherRootsUtil;
 import com.chefsdelights.farmersrespite.core.FRConfiguration;
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
 import com.chefsdelights.farmersrespite.core.registry.FRItems;
-import io.github.fabricators_of_create.porting_lib.util.IPlantable;
 import io.github.fabricators_of_create.porting_lib.util.PlantType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,9 +28,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
-public class CoffeeBushTopBlock extends BushBlock implements BonemealableBlock, IPlantable {
+public class CoffeeBushTopBlock extends BushBlock implements BonemealableBlock {
 	   public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
 	   private static final VoxelShape SHAPE_LOWER = Shapes.or(Block.box(0.0D, 6.0D, 0.0D, 16.0D, 18.0D, 16.0D), Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D));
@@ -87,7 +85,7 @@ public class CoffeeBushTopBlock extends BushBlock implements BonemealableBlock, 
 			 }
 
 		   @Override
-		public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+		public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 				for (BlockPos neighborPos : WitherRootsUtil.randomInSquareDown(random, pos, 2)) {
 				    BlockState neighborState = level.getBlockState(neighborPos);
 					BlockState witherRootsState = random.nextInt(2) == 0 ? FRBlocks.WITHER_ROOTS.defaultBlockState() : FRBlocks.WITHER_ROOTS_PLANT.defaultBlockState();
@@ -181,11 +179,11 @@ public class CoffeeBushTopBlock extends BushBlock implements BonemealableBlock, 
 		}
 
 		@Override
-		public boolean isBonemealSuccess(Level level, Random rand, BlockPos pos, BlockState state) {
+		public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 			return FRConfiguration.BONE_MEAL_COFFEE.get();
 		}
 
-		public Direction getDirection(Random rand) {
+		public Direction getDirection(RandomSource rand) {
 			int i = rand.nextInt(4);
 			if (i == 0) {
 				return Direction.NORTH;
@@ -203,7 +201,7 @@ public class CoffeeBushTopBlock extends BushBlock implements BonemealableBlock, 
 		}
 
 		@Override
-		public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+		public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 				BlockState belowState = world.getBlockState(pos.below());
 				BlockState belowBelowState = world.getBlockState(pos.below().below());
 			  if (state.getValue(HALF) == DoubleBlockHalf.LOWER && (world.isEmptyBlock(pos.above().above())) && belowState.getBlock() instanceof CoffeeStemBlock) {

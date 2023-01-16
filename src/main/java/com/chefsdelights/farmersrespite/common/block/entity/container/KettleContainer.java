@@ -8,7 +8,6 @@ import com.chefsdelights.farmersrespite.core.registry.FRContainerTypes;
 import com.mojang.datafixers.util.Pair;
 import com.nhoryzon.mc.farmersdelight.entity.block.inventory.ItemHandler;
 import com.nhoryzon.mc.farmersdelight.entity.block.inventory.slot.SlotItemHandler;
-import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.FriendlyByteBuf;

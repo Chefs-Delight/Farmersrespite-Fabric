@@ -5,7 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
@@ -56,7 +56,7 @@ public class DrinkableItem extends ConsumableItem {
 
     @Environment(EnvType.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
-        TranslatableComponent empty = FarmersDelightMod.i18n("tooltip.milk_bottle");
+        MutableComponent empty = FarmersDelightMod.i18n("tooltip.milk_bottle");
         tooltip.add(empty.withStyle(ChatFormatting.BLUE));
     }
 }

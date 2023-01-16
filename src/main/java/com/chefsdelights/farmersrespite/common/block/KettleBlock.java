@@ -21,6 +21,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -54,7 +55,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class KettleBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
@@ -250,7 +250,7 @@ public class KettleBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 		if (tileEntity instanceof KettleBlockEntity && ((KettleBlockEntity) tileEntity).isHeated() && ((KettleBlockEntity) tileEntity).isHeated() && stateIn.getValue(LID) == true) {
 			double x = pos.getX() + 0.5D;

@@ -15,7 +15,7 @@ public class WildTeaBushBlock extends BushBlock {
 		super(properties);
 	}
 
-	   @Override
+	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		 return SHAPE;
 	 }

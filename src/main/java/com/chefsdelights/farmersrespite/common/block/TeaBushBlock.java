@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -84,7 +85,7 @@ import java.util.Random;
 		   }
 
 	   @Override
-	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		      if ((state.getValue(HALF) == DoubleBlockHalf.LOWER) && random.nextInt(15) == 0) {
 		    	  performBonemeal(level, random, pos, state);
 		      }
@@ -183,14 +184,14 @@ import java.util.Random;
 	    return false;
 	}
 
-	@Override
-	public boolean isBonemealSuccess(Level level, Random rand, BlockPos pos, BlockState state) {
-		return true;
-	}
+		@Override
+		public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+			return true;
+		}
 
-	@Override
-	public void performBonemeal(ServerLevel level, Random rand, BlockPos pos, BlockState state) {
-	    int i = state.getValue(AGE);
-  	  	level.setBlockAndUpdate(pos, state.setValue(AGE, Integer.valueOf(i + 1)));
+		@Override
+		public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+			int i = blockState.getValue(AGE);
+			serverLevel.setBlockAndUpdate(blockPos, blockState.setValue(AGE, Integer.valueOf(i + 1)));
 		}
 	}

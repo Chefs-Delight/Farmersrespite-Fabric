@@ -31,7 +31,7 @@
     "client": [
       "com.chefsdelights.farmersrespite.client.FRClientSetup"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "com.chefsdelights.farmersrespite.integration.rei.REIPlugin"
     ]
   },
@@ -43,7 +43,7 @@
   "depends": {
     "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.18.2",
+    "minecraft": "1.19.2",
     "java": ">=17",
     "forgeconfigapiport": "*"
   },

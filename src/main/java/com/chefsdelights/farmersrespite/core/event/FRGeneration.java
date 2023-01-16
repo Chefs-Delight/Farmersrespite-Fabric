@@ -1,12 +1,9 @@
 package com.chefsdelights.farmersrespite.core.event;
 
 import com.chefsdelights.farmersrespite.core.registry.FRBiomeFeatures;
-import com.nhoryzon.mc.farmersdelight.registry.ConfiguredFeaturesRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;

@@ -27,6 +27,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.Nameable;
@@ -45,7 +46,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.Optional;
-import java.util.Random;
 
 public class KettleBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity, Nameable {
 	public static final String TAG_KEY_COOK_RECIPES_USED = "RecipesUsed";
@@ -350,7 +350,7 @@ public class KettleBlockEntity extends SyncedBlockEntity implements MenuProvider
 
 	public static void animationTick(Level world, BlockPos pos, BlockState state, KettleBlockEntity cookingPot) {
 		if (world != null && cookingPot.isHeated(world, pos)) {
-			Random random = world.random;
+			RandomSource random = world.random;
 			double baseX;
 			double baseY;
 			double baseZ;

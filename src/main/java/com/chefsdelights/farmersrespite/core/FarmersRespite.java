@@ -8,7 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -45,19 +46,18 @@ public class FarmersRespite implements ModInitializer {
 
 		);
 
-		FRCommonSetup.init();
-		FRGeneration.init();
-
 		//registerVillagerTradeOffer();
 		ModLoadingContext.registerConfig(MOD_ID, ModConfig.Type.COMMON, FRConfiguration.COMMON_CONFIG);
+		FRCommonSetup.init();
+		FRGeneration.init();
 	}
 
 	public static ResourceLocation id(String path) {
 		return new ResourceLocation(MOD_ID, path);
 	}
 
-	public static TranslatableComponent i18n(String key, Object... args) {
-		return new TranslatableComponent(MOD_ID + "." + key, args);
+	public static MutableComponent i18n(String key, Object... args) {
+		return Component.translatable(MOD_ID + "." + key, args);
 	}
 
 	protected void registerVillagerTradeOffer() {

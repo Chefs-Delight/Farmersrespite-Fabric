@@ -8,8 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
@@ -26,13 +24,13 @@ import java.util.Map;
  */
 
 public class FRTextUtils {
-	private static final MutableComponent NO_EFFECTS = (new TranslatableComponent("effect.none")).withStyle(ChatFormatting.GRAY);
+	private static final MutableComponent NO_EFFECTS = (Component.translatable("effect.none")).withStyle(ChatFormatting.GRAY);
 
 	/**
 	 * Syntactic sugar for custom translation keys. Always prefixed with the mod's ID in lang files (e.g. farmersdelight.your.key.here).
 	 */
 	public static MutableComponent getTranslation(String key, Object... args) {
-		return new TranslatableComponent(FarmersRespite.MOD_ID + "." + key, args);
+		return Component.translatable(FarmersRespite.MOD_ID + "." + key, args);
 	}
 
 	/**
@@ -51,7 +49,7 @@ public class FRTextUtils {
 		} else {
 			for (Pair<MobEffectInstance, Float> effectPair : effectList) {
 				MobEffectInstance instance = effectPair.getFirst();
-				MutableComponent iformattabletextcomponent = new TranslatableComponent(instance.getDescriptionId());
+				MutableComponent iformattabletextcomponent = Component.translatable(instance.getDescriptionId());
 				MobEffect effect = instance.getEffect();
 				Map<Attribute, AttributeModifier> attributeMap = effect.getAttributeModifiers();
 				if (!attributeMap.isEmpty()) {
@@ -63,11 +61,11 @@ public class FRTextUtils {
 				}
 
 				if (instance.getAmplifier() > 0) {
-					iformattabletextcomponent = new TranslatableComponent("potion.withAmplifier", iformattabletextcomponent, new TranslatableComponent("potion.potency." + instance.getAmplifier()));
+					iformattabletextcomponent = Component.translatable("potion.withAmplifier", iformattabletextcomponent, Component.translatable("potion.potency." + instance.getAmplifier()));
 				}
 
 				if (instance.getDuration() > 20) {
-					iformattabletextcomponent = new TranslatableComponent("potion.withDuration", iformattabletextcomponent, MobEffectUtil.formatDuration(instance, durationFactor));
+					iformattabletextcomponent = Component.translatable("potion.withDuration", iformattabletextcomponent, MobEffectUtil.formatDuration(instance, durationFactor));
 				}
 
 				lores.add(iformattabletextcomponent.withStyle(effect.getCategory().getTooltipFormatting()));
@@ -75,8 +73,8 @@ public class FRTextUtils {
 		}
 
 		if (!attributeList.isEmpty()) {
-			lores.add(TextComponent.EMPTY);
-			lores.add((new TranslatableComponent("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
+			lores.add(Component.empty());
+			lores.add((Component.translatable("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
 
 			for (Pair<Attribute, AttributeModifier> pair : attributeList) {
 				AttributeModifier modifier = pair.getSecond();
@@ -89,10 +87,10 @@ public class FRTextUtils {
 				}
 
 				if (amount > 0.0D) {
-					lores.add((new TranslatableComponent("attribute.modifier.plus." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), new TranslatableComponent(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.BLUE));
+					lores.add((Component.translatable("attribute.modifier.plus." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), Component.translatable(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.BLUE));
 				} else if (amount < 0.0D) {
 					formattedAmount = formattedAmount * -1.0D;
-					lores.add((new TranslatableComponent("attribute.modifier.take." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), new TranslatableComponent(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.RED));
+					lores.add((Component.translatable("attribute.modifier.take." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), Component.translatable(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.RED));
 				}
 			}
 		}

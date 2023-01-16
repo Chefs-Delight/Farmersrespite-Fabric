@@ -7,6 +7,7 @@ import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,7 +31,7 @@ public class CoffeeBushFeature extends Feature<NoneFeatureConfiguration> {
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
-		Random rand = level.getRandom();
+		RandomSource rand = level.getRandom();
 		BlockState coffeeBushBottom = FRBlocks.COFFEE_BUSH.defaultBlockState();
 		BlockState coffeeBushTop = FRBlocks.COFFEE_BUSH.defaultBlockState().setValue(CoffeeBushBlock.HALF, DoubleBlockHalf.UPPER);
 		BlockState coffeeStem = FRBlocks.COFFEE_STEM.defaultBlockState();

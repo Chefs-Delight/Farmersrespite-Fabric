@@ -3,13 +3,13 @@ package com.chefsdelights.farmersrespite.common.block;
 import com.chefsdelights.farmersrespite.common.block.state.WitherRootsUtil;
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
 import com.chefsdelights.farmersrespite.core.registry.FRItems;
-import io.github.fabricators_of_create.porting_lib.util.IPlantable;
 import io.github.fabricators_of_create.porting_lib.util.PlantType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,9 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
-public class CoffeeDoubleStemBlock extends BushBlock implements BonemealableBlock, IPlantable {
+public class CoffeeDoubleStemBlock extends BushBlock implements BonemealableBlock {
 	   public static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 
 	   public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
@@ -73,7 +71,7 @@ public class CoffeeDoubleStemBlock extends BushBlock implements BonemealableBloc
 			   }
 
 		   @Override
-		public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+		public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 			      int i = state.getValue(AGE);
 			      int j = state.getValue(AGE1);
 			      int rand = random.nextInt(2);
@@ -148,12 +146,12 @@ public class CoffeeDoubleStemBlock extends BushBlock implements BonemealableBloc
 		}
 
 		@Override
-		public boolean isBonemealSuccess(Level level, Random rand, BlockPos pos, BlockState state) {
+		public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 			return true;
 		}
 
 		@Override
-		public void performBonemeal(ServerLevel level, Random rand, BlockPos pos, BlockState state) {
+		public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
 		      	int i = state.getValue(AGE);
 		      	int j = state.getValue(AGE1);
 		      	int random = rand.nextInt(2);

@@ -16,6 +16,7 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import java.util.function.ToIntFunction;
 
+@SuppressWarnings("unused")
 public class FRBlocks {
 
 	//Blocks
