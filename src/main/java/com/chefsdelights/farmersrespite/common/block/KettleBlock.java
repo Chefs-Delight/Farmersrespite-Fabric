@@ -111,9 +111,8 @@ public class KettleBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 			world.setBlockAndUpdate(pos, state.setValue(WATER_LEVEL, i + 1));
             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.NEUTRAL, 1.0F, 1.0F);
          }
-	  	else if (tileEntity instanceof KettleBlockEntity) {
-				KettleBlockEntity kettleEntity = (KettleBlockEntity) tileEntity;
-				ItemStack servingStack = kettleEntity.useHeldItemOnMeal(heldStack);
+	  	else if (tileEntity instanceof KettleBlockEntity kettleEntity) {
+			ItemStack servingStack = kettleEntity.useHeldItemOnMeal(heldStack);
 				if (servingStack != ItemStack.EMPTY) {
 					if (!player.getInventory().add(servingStack)) {
 						player.drop(servingStack, false);
@@ -197,8 +196,7 @@ public class KettleBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
 			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-			if (tileEntity instanceof KettleBlockEntity) {
-				KettleBlockEntity kettleEntity = (KettleBlockEntity) tileEntity;
+			if (tileEntity instanceof KettleBlockEntity kettleEntity) {
 				Containers.dropContents(worldIn, pos, kettleEntity.getDroppableInventory());
 				kettleEntity.grantStoredRecipeExperience(worldIn, Vec3.atCenterOf(pos));
 				worldIn.updateNeighbourForOutputSignal(pos, this);
@@ -270,15 +268,15 @@ public class KettleBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 		return true;
 	}
 
-//	@Override
-//	public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos) {
-//		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-//		if (tileEntity instanceof KettleBlockEntity) {
-//			ItemHandler inventory = ((KettleBlockEntity) tileEntity).getInventory();
-//			return false MathUtils.calcRedstoneFromItemHandler(inventory);
-//		}
-//		return 0;
-//	}
+	@Override
+	public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos) {
+		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+		if (tileEntity instanceof KettleBlockEntity) {
+			ItemHandler inventory = ((KettleBlockEntity) tileEntity).getInventory();
+			return MathUtils.calcRedstoneFromItemHandler(inventory);
+		}
+		return 0;
+	}
 
 	@Override
 	public FluidState getFluidState(BlockState state) {

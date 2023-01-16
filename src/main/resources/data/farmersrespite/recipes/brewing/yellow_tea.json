@@ -12,6 +12,6 @@
     "item": "farmersrespite:yellow_tea"
   },
   "experience": 0.35,
-  "brewingtime": 300,
+  "brewingtime": 2400,
   "needWater": true
 }

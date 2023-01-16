@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "bSb",
-    "iWi",
-    "iii"
+    "sls",
+    "bBb",
+    "bbb"
   ],
   "key": {
-    "b": {
+    "s": {
       "item": "minecraft:stick"
     },
-    "i": {
-      "item": "minecraft:brick"
-    },
-    "S": {
+    "l": {
       "item": "minecraft:leather"
     },
-    "W": {
+    "b": {
+      "item": "minecraft:copper_ingot"
+    },
+    "B": {
       "item": "minecraft:bucket"
     }
   },

@@ -75,8 +75,7 @@ public class CoffeeBushFeature extends Feature<NoneFeatureConfiguration> {
 		}
 		return i > 0;
 	}
-	public static boolean canGrowCoffee(BlockState state)
-	{
+	public static boolean canGrowCoffee(BlockState state) {
 		return state.is(Blocks.BASALT) || state.is(Blocks.POLISHED_BASALT) || state.is(Blocks.SMOOTH_BASALT) || state.is(Blocks.MAGMA_BLOCK);
 	}
 }

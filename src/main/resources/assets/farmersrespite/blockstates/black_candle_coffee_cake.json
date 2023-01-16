@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "farmersrespite:block/black_candle_coffee_cake"
+    },
+    "lit=true": {
+      "model": "farmersrespite:block/black_candle_coffee_cake_lit"
+    }
+  }
+}

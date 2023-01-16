@@ -12,6 +12,6 @@
     "item": "farmersrespite:coffee"
   },
   "experience": 0.35,
-  "brewingtime": 300,
+  "brewingtime": 100,
   "needWater": true
 }

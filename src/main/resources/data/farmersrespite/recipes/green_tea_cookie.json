@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "bSb"
+    "wgw"
   ],
   "key": {
-    "b": {
+    "w": {
       "item": "minecraft:wheat"
     },
-    "S": {
+    "g": {
       "item": "farmersrespite:green_tea_leaves"
     }
   },

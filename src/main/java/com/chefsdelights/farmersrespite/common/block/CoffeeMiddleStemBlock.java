@@ -104,7 +104,7 @@ public class CoffeeMiddleStemBlock extends BushBlock implements BonemealableBloc
 			      if (!flag && player.getItemInHand(handIn).getItem() == Items.BONE_MEAL) {
 			         return InteractionResult.PASS;
 			      } else if (i == 2) {
-//			         popResource(world, pos, new ItemStack(FRItems.COFFEE_BERRIES, 1));
+			         popResource(world, pos, new ItemStack(FRItems.COFFEE_BERRIES, 1));
 			         world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			         world.setBlock(pos, state.setValue(AGE, 0), 2);
 			         return InteractionResult.sidedSuccess(world.isClientSide);

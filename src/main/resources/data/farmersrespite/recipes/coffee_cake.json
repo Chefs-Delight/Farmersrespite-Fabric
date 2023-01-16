@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "bSb",
-    "xWx",
-    "iii"
+    "msm",
+    "cec",
+    "www"
   ],
   "key": {
-    "b": {
-      "tag": "forge:milk"
+    "m": {
+      "tag": "c:milk"
     },
-    "x": {
-      "item": "farmersrespite:coffee_beans"
-    },
-    "i": {
-      "item": "minecraft:wheat"
-    },
-    "S": {
+    "s": {
       "item": "minecraft:sugar"
     },
-    "W": {
+    "c": {
+      "item": "farmersrespite:coffee_beans"
+    },
+    "e": {
       "item": "minecraft:egg"
+    },
+    "w": {
+      "item": "minecraft:wheat"
     }
   },
   "result": {

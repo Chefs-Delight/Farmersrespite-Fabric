@@ -3,6 +3,7 @@
   "package": "com.chefsdelights.farmersrespite.core.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "LivingEntityCaffeinatedImmunitiesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

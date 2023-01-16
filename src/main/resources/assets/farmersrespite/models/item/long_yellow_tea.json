@@ -1,0 +1,6 @@
+{
+  "parent": "farmersdelight:item/mug",
+  "textures": {
+     "layer0": "farmersrespite:item/yellow_tea"
+  }
+}

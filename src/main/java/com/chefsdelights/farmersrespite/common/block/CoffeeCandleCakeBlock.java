@@ -1,6 +1,7 @@
 package com.chefsdelights.farmersrespite.common.block;
 
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
+import com.chefsdelights.farmersrespite.core.registry.FREffects;
 import com.chefsdelights.farmersrespite.core.registry.FRItems;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
@@ -89,7 +90,7 @@ public class CoffeeCandleCakeBlock extends AbstractCandleBlock {
 			player.awardStat(Stats.EAT_CAKE_SLICE);
 			player.getFoodData().eat(2, 0.1F);
 			if (!level.isClientSide()) {
-//				player.addEffect(new MobEffectInstance(FREffects.CAFFEINATED, 600, 0));
+				player.addEffect(new MobEffectInstance(FREffects.CAFFEINATED, 600, 0));
 			}
 
 			level.gameEvent(player, GameEvent.EAT, pos);
@@ -101,7 +102,7 @@ public class CoffeeCandleCakeBlock extends AbstractCandleBlock {
 	
 	public InteractionResult cutSlice(Level level, BlockPos pos, BlockState state, Player player) {
 		level.setBlock(pos, FRBlocks.COFFEE_CAKE.defaultBlockState().setValue(CoffeeCakeBlock.BITES, 1), 3);
-//		Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FRItems.COFFEE_CAKE_SLICE));
+		Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FRItems.COFFEE_CAKE_SLICE));
 		Block.dropResources(state, level, pos);
 		level.playSound(null, pos, SoundEvents.WOOL_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
 		return InteractionResult.SUCCESS;

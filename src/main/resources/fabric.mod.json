@@ -31,7 +31,8 @@
     "client": [
       "com.chefsdelights.farmersrespite.client.FRClientSetup"
     ],
-    "rei"   : [
+    "rei_plugins": [
+      "com.chefsdelights.farmersrespite.integration.rei.REIPlugin"
     ]
   },
   "mixins": [
@@ -51,7 +52,7 @@
     "modmenu": {
       "badges": [],
       "links": {
-        "mod.example.contact.discord": "https://discord.gg/eRdBB86Nr7"
+        "modmenu.discord": "https://discord.gg/eRdBB86Nr7"
       }
     }
   }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "farmersrespite:coffee_beans"
+            "items": [
+              "farmersrespite:coffee_beans"
+            ]
           }
         ]
       }

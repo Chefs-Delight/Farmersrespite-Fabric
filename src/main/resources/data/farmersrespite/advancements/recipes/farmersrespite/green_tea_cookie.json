@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "farmersrespite:green_tea_leaves"
+            "items": [
+              "farmersrespite:green_tea_leaves"
+            ]
           }
         ]
       }

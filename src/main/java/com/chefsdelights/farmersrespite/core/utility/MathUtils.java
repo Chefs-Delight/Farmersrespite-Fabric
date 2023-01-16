@@ -1,35 +1,36 @@
 package com.chefsdelights.farmersrespite.core.utility;
 
-import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandler;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public final class MathUtils {
     public static final Random RAND = new Random();
 
-    public MathUtils() {
-    }
+    public MathUtils() {}
 
-    public static int calcRedstoneFromItemHandler(@Nullable ItemStackHandler handler) {
-        if (handler == null) {
+    public static int calcRedstoneFromItemHandler(Container inventory) {
+        if (inventory == null) {
             return 0;
         } else {
-            int i = 0;
-            float f = 0.0F;
-            for(int j = 0; j < handler.getSlots(); ++j) {
-                ItemStack itemstack = handler.getStackInSlot(j);
-                if (!itemstack.isEmpty()) {
-                    f += (float)itemstack.getCount() / (float)Math.min(handler.getSlotLimit(j), itemstack.getMaxStackSize());
-                    ++i;
+            int itemCount = 0;
+            float f = .0f;
+
+            for (int i = 0; i < inventory.getContainerSize(); i++) {
+                ItemStack itemStack = inventory.getItem(i);
+                if (!itemStack.isEmpty()) {
+                    f += (float) itemStack.getCount() / (float) Math.min(inventory.getMaxStackSize(), itemStack.getMaxStackSize());
+                    itemCount++;
                 }
             }
 
-            f /= (float)handler.getSlots();
-            return Mth.floor(f * 14.0F) + (i > 0 ? 1 : 0);
+            if (inventory.getContainerSize() > 0) {
+                f = f / (float) inventory.getContainerSize();
+            }
+
+            return Mth.floor(f * 14.f) + (itemCount > 0 ? 1 : 0);
         }
     }
 }

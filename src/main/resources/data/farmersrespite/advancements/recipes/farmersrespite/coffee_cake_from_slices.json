@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "farmersrespite:coffee_cake_slice"
+            "items": [
+              "farmersrespite:coffee_cake_slice"
+            ]
           }
         ]
       }

@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##",
-    "bS"
+    "nn",
+    "rb"
   ],
   "key": {
-    "#": {
+    "n": {
       "item": "minecraft:nether_wart"
     },
-    "b": {
+    "r": {
       "item": "minecraft:red_mushroom"
     },
-    "S": {
+    "b": {
       "item": "minecraft:brown_mushroom"
     }
   },

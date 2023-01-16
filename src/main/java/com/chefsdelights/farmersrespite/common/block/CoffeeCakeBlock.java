@@ -1,5 +1,6 @@
 package com.chefsdelights.farmersrespite.common.block;
 
+import com.chefsdelights.farmersrespite.core.registry.FREffects;
 import com.chefsdelights.farmersrespite.core.registry.FRItems;
 import com.nhoryzon.mc.farmersdelight.registry.TagsRegistry;
 import net.minecraft.core.BlockPos;
@@ -74,7 +75,7 @@ public class CoffeeCakeBlock extends CakeBlock {
 			player.awardStat(Stats.EAT_CAKE_SLICE);
 			player.getFoodData().eat(2, 0.1F);
 			if (!level.isClientSide()) {
-//				player.addEffect(new MobEffectInstance(FREffects.CAFFEINATED, 600, 0));
+				player.addEffect(new MobEffectInstance(FREffects.CAFFEINATED, 600, 0));
 			}
 
 			int i = state.getValue(BITES);
@@ -97,7 +98,7 @@ public class CoffeeCakeBlock extends CakeBlock {
 		} else {
 			worldIn.removeBlock(pos, false);
 		}
-//		Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FRItems.COFFEE_CAKE_SLICE));
+		Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FRItems.COFFEE_CAKE_SLICE));
 		worldIn.playSound(null, pos, SoundEvents.WOOL_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
 		return InteractionResult.SUCCESS;
 	}
