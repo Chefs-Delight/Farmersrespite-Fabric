@@ -3,7 +3,6 @@ package com.chefsdelights.farmersrespite.common.block;
 import com.chefsdelights.farmersrespite.common.block.state.WitherRootsUtil;
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
 import com.chefsdelights.farmersrespite.core.registry.FRItems;
-import io.github.fabricators_of_create.porting_lib.util.PlantType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -42,11 +41,6 @@ public class CoffeeStemBlock extends BushBlock implements BonemealableBlock {
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 			return SHAPE;
 	   }
-
-	   @Override
-	   public PlantType getPlantType(BlockGetter world, BlockPos pos) {
-	        return PlantType.NETHER;
-	    }
 
 	   @Override
 	   public boolean mayPlaceOn(BlockState state, BlockGetter pLevel, BlockPos pPos) {

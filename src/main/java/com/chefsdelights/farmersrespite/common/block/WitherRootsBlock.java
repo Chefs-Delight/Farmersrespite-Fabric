@@ -47,7 +47,7 @@ public class WitherRootsBlock extends BushBlock implements BonemealableBlock {
 	   public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		      BlockPos blockpos = pos.below();
 		      if (state.getBlock() == this)
-		         return level.getBlockState(blockpos).canSustainPlant(level, blockpos, Direction.UP, this);
+		         return level.getBlockState(blockpos).canSurvive(level, blockpos);
 		      return true;
 		   }
 
@@ -109,8 +109,4 @@ public class WitherRootsBlock extends BushBlock implements BonemealableBlock {
 
 	}
 
-	@Override
-	public BlockState getPlant(BlockGetter world, BlockPos pos) {
-		return super.getPlant(world, pos);
-	}
 }

@@ -42,6 +42,9 @@ repositories {
     maven { url = "https://mvn.devos.one/releases/" }
     maven { url = "https://mvn.devos.one/snapshots/" }
     maven { url 'https://jitpack.io' }
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
@@ -78,6 +81,16 @@ dependencies {
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 
     implementation 'javax.annotation:javax.annotation-api:1.2'
+
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:base-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:entity-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:lazy_registration-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:model_generators-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:models-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:networking-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:obj_loader-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:tags-2.0.5911.19.2")
+    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:transfer-2.0.5911.19.2")
 
 }
 

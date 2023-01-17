@@ -1,6 +1,5 @@
 package com.chefsdelights.farmersrespite.common.item;
 
-import io.github.fabricators_of_create.porting_lib.extensions.MobEffectInstanceExtensions;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;

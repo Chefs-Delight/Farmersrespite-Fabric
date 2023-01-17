@@ -4,7 +4,6 @@ import com.chefsdelights.farmersrespite.common.block.state.WitherRootsUtil;
 import com.chefsdelights.farmersrespite.core.FRConfiguration;
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
 import com.chefsdelights.farmersrespite.core.registry.FRItems;
-import io.github.fabricators_of_create.porting_lib.util.PlantType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -47,11 +46,6 @@ public class CoffeeBushBlock extends BushBlock implements BonemealableBlock {
 		    	}
 		    return SHAPE_LOWER;
 		   }
-
-	   @Override
-	   public PlantType getPlantType(BlockGetter level, BlockPos pos) {
-	        return PlantType.NETHER;
-	    }
 
 	   @Override
 	   public boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
@@ -172,6 +166,8 @@ public class CoffeeBushBlock extends BushBlock implements BonemealableBlock {
 			}
 			return null;
 		}
+
+
 
 		@Override
 		public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {

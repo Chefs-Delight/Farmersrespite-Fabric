@@ -15,41 +15,41 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-//@Environment(EnvType.CLIENT)
-//public class BrewingRecipeDisplay extends BasicDisplay {
-//
-//    private final EntryIngredient containerOutput;
-//    private final int brewTime;
-//
-//    public BrewingRecipeDisplay(KettleRecipe recipe) {
-//        super(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())),
-//                Optional.ofNullable(recipe.getId()));
-//        containerOutput = EntryIngredients.of(recipe.getOutputContainer());
-//        brewTime = recipe.getBrewTime();
-//    }
-//
-//    @Override
-//    public CategoryIdentifier<?> getCategoryIdentifier() {
-//        return REIPlugin.BREWING;
-//    }
-//
-//    @Override
-//    public List<EntryIngredient> getInputEntries() {
-//        List<EntryIngredient> inputEntryList = new ArrayList<>(super.getInputEntries());
-//        inputEntryList.add(getContainerOutput());
-//
-//        return ImmutableList.copyOf(inputEntryList);
-//    }
-//
-//    public List<EntryIngredient> getIngredientEntries() {
-//        return super.getInputEntries();
-//    }
-//
-//    public EntryIngredient getContainerOutput() {
-//        return containerOutput;
-//    }
-//
-//    public int getBrewTime() {
-//        return brewTime;
-//    }
-//}
+@Environment(EnvType.CLIENT)
+public class BrewingRecipeDisplay extends BasicDisplay {
+
+    private final EntryIngredient containerOutput;
+    private final int brewTime;
+
+    public BrewingRecipeDisplay(KettleRecipe recipe) {
+        super(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())),
+                Optional.ofNullable(recipe.getId()));
+        containerOutput = EntryIngredients.of(recipe.getOutputContainer());
+        brewTime = recipe.getBrewTime();
+    }
+
+    @Override
+    public CategoryIdentifier<?> getCategoryIdentifier() {
+        return REIPlugin.BREWING;
+    }
+
+    @Override
+    public List<EntryIngredient> getInputEntries() {
+        List<EntryIngredient> inputEntryList = new ArrayList<>(super.getInputEntries());
+        inputEntryList.add(getContainerOutput());
+
+        return ImmutableList.copyOf(inputEntryList);
+    }
+
+    public List<EntryIngredient> getIngredientEntries() {
+        return super.getInputEntries();
+    }
+
+    public EntryIngredient getContainerOutput() {
+        return containerOutput;
+    }
+
+    public int getBrewTime() {
+        return brewTime;
+    }
+}
