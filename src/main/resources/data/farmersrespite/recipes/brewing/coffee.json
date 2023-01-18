@@ -2,10 +2,10 @@
   "type": "farmersrespite:brewing",
   "ingredients": [
     {
-      "item": "farmersrespite:coffee_beans"
+      "tag": "c:crops/coffee_beans"
     },
     {
-      "item": "farmersrespite:coffee_beans"
+      "tag": "c:crops/coffee_beans"
     }
   ],
   "result": {

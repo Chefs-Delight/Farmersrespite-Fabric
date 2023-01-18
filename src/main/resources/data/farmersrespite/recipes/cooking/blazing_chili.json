@@ -14,7 +14,7 @@
       "item": "minecraft:nether_wart"
     },
     {
-      "item": "farmersrespite:coffee_beans"
+      "tag": "c:crops/coffee_beans"
     },
     {
       "tag": "c:raw_beef"
