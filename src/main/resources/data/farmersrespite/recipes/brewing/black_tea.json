@@ -2,10 +2,10 @@
   "type": "farmersrespite:brewing",
   "ingredients": [
     {
-      "item": "farmersrespite:black_tea_leaves"
+      "tag": "c:crops/black_tea_leaves"
     },
     {
-      "item": "farmersrespite:black_tea_leaves"
+      "tag": "c:crops/black_tea_leaves"
     }
   ],
   "result": {
