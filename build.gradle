@@ -42,9 +42,6 @@ repositories {
     maven { url = "https://mvn.devos.one/releases/" }
     maven { url = "https://mvn.devos.one/snapshots/" }
     maven { url 'https://jitpack.io' }
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 dependencies {
@@ -60,7 +57,7 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
 
-    modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${project.forge_tags_version}"))
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:porting-lib:${project.forge_tags_version}"))
 
     modImplementation(include("curse.maven:forge-config-api-port-fabric-547434:${project.config_api_version}"))
     implementation 'com.electronwill.night-config:core:3.6.6'
@@ -81,16 +78,6 @@ dependencies {
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 
     implementation 'javax.annotation:javax.annotation-api:1.2'
-
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:base-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:entity-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:lazy_registration-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:model_generators-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:models-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:networking-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:obj_loader-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:tags-2.0.5911.19.2")
-    include(modImplementation "io.github.fabricators_of_create.Porting-Lib:transfer-2.0.5911.19.2")
 
 }
 
