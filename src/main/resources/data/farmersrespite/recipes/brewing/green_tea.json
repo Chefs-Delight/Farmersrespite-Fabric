@@ -2,10 +2,10 @@
   "type": "farmersrespite:brewing",
   "ingredients": [
     {
-      "item": "farmersrespite:green_tea_leaves"
+      "tag": "c:crops/green_tea_leaves"
     },
     {
-      "item": "farmersrespite:green_tea_leaves"
+      "tag": "c:crops/green_tea_leaves"
     }
   ],
   "result": {

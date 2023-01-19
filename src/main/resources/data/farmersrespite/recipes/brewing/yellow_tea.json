@@ -2,10 +2,10 @@
   "type": "farmersrespite:brewing",
   "ingredients": [
     {
-      "item": "farmersrespite:yellow_tea_leaves"
+      "tag": "c:crops/yellow_tea_leaves"
     },
     {
-      "item": "farmersrespite:yellow_tea_leaves"
+      "tag": "c:crops/yellow_tea_leaves"
     }
   ],
   "result": {

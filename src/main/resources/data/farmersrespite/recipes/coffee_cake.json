@@ -13,10 +13,10 @@
       "item": "minecraft:sugar"
     },
     "c": {
-      "item": "farmersrespite:coffee_beans"
+      "tag": "c:crops/coffee_beans"
     },
     "e": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "w": {
       "item": "minecraft:wheat"

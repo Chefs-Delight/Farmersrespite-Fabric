@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#c:seeds/coffee_beans",
+    "#c:seeds/tea_leaves"
+  ]
+}

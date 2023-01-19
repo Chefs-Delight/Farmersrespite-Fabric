@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#c:crops/green_tea_leaves",
+	"#c:crops/black_tea_leaves",
+	"#c:crops/yellow_tea_leaves"
+  ]
+}

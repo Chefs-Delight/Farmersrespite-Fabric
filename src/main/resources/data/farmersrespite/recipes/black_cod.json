@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:cooked_fishes/cod"
+      "tag": "c:cooked_fishes/cod"
     },
     {
-      "item": "farmersrespite:black_tea_leaves"
+      "tag": "c:crops/black_tea_leaves"
     },
     {
       "item": "minecraft:bowl"

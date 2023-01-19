@@ -2,10 +2,10 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "item": "farmersrespite:yellow_tea_leaves"
+      "tag": "c:crops/yellow_tea_leaves"
     },
     {
-      "item": "farmersrespite:yellow_tea_leaves"
+      "tag": "c:crops/yellow_tea_leaves"
     },
     {
       "tag": "c:raw_chicken"
