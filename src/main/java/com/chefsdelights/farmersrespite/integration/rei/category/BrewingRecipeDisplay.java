@@ -20,12 +20,14 @@ public class BrewingRecipeDisplay extends BasicDisplay {
 
     private final EntryIngredient containerOutput;
     private final int brewTime;
-
+    private final boolean needWater;
+	
     public BrewingRecipeDisplay(KettleRecipe recipe) {
         super(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())),
                 Optional.ofNullable(recipe.getId()));
         containerOutput = EntryIngredients.of(recipe.getOutputContainer());
         brewTime = recipe.getBrewTime();
+		needWater = recipe.getNeedWater();
     }
 
     @Override
@@ -51,5 +53,9 @@ public class BrewingRecipeDisplay extends BasicDisplay {
 
     public int getBrewTime() {
         return brewTime;
+    }
+	
+	public boolean getNeedWater() {
+        return needWater;
     }
 }
