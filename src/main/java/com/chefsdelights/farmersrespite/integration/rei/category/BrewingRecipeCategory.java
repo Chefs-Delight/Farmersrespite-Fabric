@@ -47,18 +47,21 @@ public class BrewingRecipeCategory implements DisplayCategory<BrewingRecipeDispl
 		List<EntryIngredient> ingredientEntries = display.getIngredientEntries();
 		if (ingredientEntries != null) {
 			for(int i = 0; i < ingredientEntries.size(); ++i) {
-				Point slotLoc = new Point(bgBounds.x + 1 + i % 3 * 18, bgBounds.y + 1 + i / 3 * 18);
+				Point slotLoc = new Point(bgBounds.x + 13 + i / 3 * 18, bgBounds.y + 1 + i % 3 * 18);
 				widgets.add(Widgets.createSlot(slotLoc).entries(ingredientEntries.get(i)).markInput().disableBackground());
 			}
 		}
-
+        
+		if(display.getNeedWater() == true){
+			widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, new Rectangle(bgBounds.x + 5, bgBounds.y + 23, 5, 11), 176.0F, 15.0F));
+		}
 		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 57, bgBounds.y + 39)).entries(display.getContainerOutput()).markInput().disableBackground());
-		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 89, bgBounds.y + 8)).entries(display.getOutputEntries().get(0)).markOutput().disableBackground());
+		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 89, bgBounds.y + 12)).entries(display.getOutputEntries().get(0)).markOutput().disableBackground());
 		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 89, bgBounds.y + 39)).entries(display.getOutputEntries().get(0)).markOutput().disableBackground());
-		widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, new Rectangle(bgBounds.x + 18, bgBounds.y + 39, 17, 15), 176.0F, 0.0F));
-		Arrow cookArrow = Widgets.createArrow(new Point(bgBounds.x + 46, bgBounds.y + 10)).animationDurationTicks(display.getBrewTime());
+		widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, new Rectangle(bgBounds.x + 13, bgBounds.y + 39, 17, 15), 176.0F, 0.0F));
+		Arrow cookArrow = Widgets.createArrow(new Point(bgBounds.x + 42, bgBounds.y + 10)).animationDurationTicks(display.getBrewTime());
 		widgets.add(cookArrow);
-		widgets.add(Widgets.createLabel(new Point(cookArrow.getBounds().x + cookArrow.getBounds().width / 2, cookArrow.getBounds().y - 8), Component.literal(display.getBrewTime() + " t")).noShadow().centered().tooltip(Component.literal("Ticks")).color(ChatFormatting.DARK_GRAY.getColor(), ChatFormatting.GRAY.getColor()));
+		widgets.add(Widgets.createLabel(new Point(cookArrow.getBounds().x + cookArrow.getBounds().width / 2, cookArrow.getBounds().y - 10), Component.literal(display.getBrewTime() + " t")).noShadow().centered().tooltip(Component.literal("Ticks")).color(ChatFormatting.DARK_GRAY.getColor(), ChatFormatting.GRAY.getColor()));
 		return widgets;
 	}
 }
