@@ -18,10 +18,11 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 
-//@ParametersAreNonnullByDefault
+@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class BrewingRecipeCategory implements DisplayCategory<BrewingRecipeDisplay> {
 	private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(FarmersRespite.MOD_ID, "textures/gui/rei/kettle_rei.png");

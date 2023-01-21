@@ -16,8 +16,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 @MethodsReturnNonnullByDefault
-//@ParametersAreNonnullByDefault
+@ParametersAreNonnullByDefault
 public class FRCopyMealFunction extends LootItemConditionalFunction {
 	public static final ResourceLocation ID = new ResourceLocation(FarmersRespite.MOD_ID, "copy_meal");
 

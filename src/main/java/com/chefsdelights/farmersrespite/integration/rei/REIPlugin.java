@@ -1,18 +1,9 @@
 package com.chefsdelights.farmersrespite.integration.rei;
 
-//import com.farmersrespite.client.gui.KettleScreen;
-//import com.farmersrespite.common.block.entity.container.KettleContainer;
-//import com.farmersrespite.common.crafting.KettleRecipe;
-//import com.farmersrespite.core.FarmersRespite;
-//import com.farmersrespite.core.registry.FRItems;
-//import com.farmersrespite.integration.jei.category.BrewingRecipeCategory;
-
 import com.chefsdelights.farmersrespite.client.gui.KettleScreen;
 import com.chefsdelights.farmersrespite.common.crafting.KettleRecipe;
 import com.chefsdelights.farmersrespite.core.FarmersRespite;
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
-//import com.chefsdelights.farmersrespite.integration.rei.category.BrewingRecipeCategory;
-//import com.chefsdelights.farmersrespite.integration.rei.category.BrewingRecipeDisplay;
 import com.chefsdelights.farmersrespite.integration.rei.category.BrewingRecipeCategory;
 import com.chefsdelights.farmersrespite.integration.rei.category.BrewingRecipeDisplay;
 import me.shedaniel.math.Point;
@@ -28,8 +19,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.MethodsReturnNonnullByDefault;
 
 //@ParametersAreNonnullByDefault
-//@Environment(EnvType.CLIENT)
-//@MethodsReturnNonnullByDefault
+@Environment(EnvType.CLIENT)
+@MethodsReturnNonnullByDefault
 @SuppressWarnings("unused")
 public class REIPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<BrewingRecipeDisplay> BREWING = CategoryIdentifier.of(FarmersRespite.MOD_ID, "brewing");
