@@ -55,7 +55,12 @@ public class BrewingRecipeCategory implements DisplayCategory<BrewingRecipeDispl
         
 		if(display.getNeedWater() == true){
 			widgets.add(Widgets.createTexturedWidget(GUI_TEXTURE, new Rectangle(bgBounds.x + 5, bgBounds.y + 23, 5, 11), 176.0F, 15.0F));
+			widgets.add(Widgets.createLabel(new Point(bgBounds.x + 5, bgBounds.y + 23), Component.literal(" ")).noShadow().leftAligned().tooltip(FarmersRespite.i18n("rei.brewing.needWater")));
 		}
+		else{
+			widgets.add(Widgets.createLabel(new Point(bgBounds.x + 5, bgBounds.y + 23), Component.literal(" ")).noShadow().tooltip(FarmersRespite.i18n("rei.brewing.noWater")));
+		}
+		
 		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 57, bgBounds.y + 39)).entries(display.getContainerOutput()).markInput().disableBackground());
 		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 89, bgBounds.y + 12)).entries(display.getOutputEntries().get(0)).markOutput().disableBackground());
 		widgets.add(Widgets.createSlot(new Point(bgBounds.x + 89, bgBounds.y + 39)).entries(display.getOutputEntries().get(0)).markOutput().disableBackground());
