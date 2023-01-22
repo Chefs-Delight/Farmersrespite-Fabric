@@ -5,7 +5,9 @@ import com.nhoryzon.mc.farmersdelight.entity.block.inventory.slot.SlotItemHandle
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-//@ParametersAreNonnullByDefault
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class KettleMealSlot extends SlotItemHandler {
 	public KettleMealSlot(ItemHandler inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);

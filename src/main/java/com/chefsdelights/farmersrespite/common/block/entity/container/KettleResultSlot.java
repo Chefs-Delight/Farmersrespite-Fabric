@@ -7,7 +7,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-//@ParametersAreNonnullByDefault
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class KettleResultSlot extends SlotItemHandler {
 	public final KettleBlockEntity tileEntity;
 	private final Player player;

@@ -13,11 +13,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@ParametersAreNonnullByDefault
+@ParametersAreNonnullByDefault
 public class KettleScreen extends AbstractContainerScreen<KettleContainer> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(FarmersRespite.MOD_ID, "textures/gui/kettle.png");
 	private static final Rectangle HEAT_ICON = new Rectangle(41, 55, 17, 15);
