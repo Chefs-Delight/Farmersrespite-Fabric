@@ -57,7 +57,7 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
 
-    modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${project.forge_tags_version}"))
+    modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${project.port_lib_version}+${project.minecraft_version}"))
 
     modImplementation(include("curse.maven:forge-config-api-port-fabric-547434:${project.config_api_version}"))
     implementation 'com.electronwill.night-config:core:3.6.3'

@@ -99,6 +99,8 @@
   "effect.farmersrespite.caffeinated": "Caffeinated",
 
   "farmersrespite.rei.brewing": "Brewing",
+  "farmersrespite.rei.brewing.noWater": "No water required",
+  "farmersrespite.rei.brewing.needWater": "Requires 1 glass of water",
 
   "itemGroup.farmersrespite.group": "Farmer's Respite"
 

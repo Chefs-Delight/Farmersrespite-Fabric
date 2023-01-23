@@ -14,7 +14,7 @@
       "tag": "c:crops/cabbage"
     },
     {
-      "tag": "c:crops/rice"
+      "item": "farmersdelight:cooked_rice"
     }
   ],
   "result": {

@@ -148,7 +148,7 @@ public class KettleRecipe implements Recipe<Container> {
 				ItemStack container = GsonHelper.isValidNode(json, "container") ? CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "container"), true) : ItemStack.EMPTY;
 				final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
 				final int brewTimeIn = GsonHelper.getAsInt(json, "brewingtime", 2400);
-				final boolean needWaterIn = GsonHelper.getAsBoolean(json, "needwater", true);
+				final boolean needWaterIn = GsonHelper.getAsBoolean(json, "needWater", true);
 				return new KettleRecipe(recipeId, groupIn, inputItemsIn, outputIn, container, experienceIn, brewTimeIn, needWaterIn);
 			}
 		}
