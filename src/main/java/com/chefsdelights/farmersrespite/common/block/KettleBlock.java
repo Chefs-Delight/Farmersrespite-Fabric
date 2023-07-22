@@ -1,12 +1,12 @@
 package com.chefsdelights.farmersrespite.common.block;
 
 import com.chefsdelights.farmersrespite.common.block.entity.KettleBlockEntity;
+import com.chefsdelights.farmersrespite.common.block.entity.inventory.ItemHandler;
 import com.chefsdelights.farmersrespite.core.registry.FRBlockEntityTypes;
 import com.chefsdelights.farmersrespite.core.registry.FRSounds;
 import com.chefsdelights.farmersrespite.core.utility.FRTextUtils;
 import com.chefsdelights.farmersrespite.core.utility.MathUtils;
 import com.nhoryzon.mc.farmersdelight.block.state.CookingPotSupport;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.ItemHandler;
 import com.nhoryzon.mc.farmersdelight.registry.TagsRegistry;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandler;
 import io.github.fabricators_of_create.porting_lib.util.NetworkUtil;

@@ -1,13 +1,13 @@
 package com.chefsdelights.farmersrespite.common.block.entity.container;
 
+import com.chefsdelights.farmersrespite.common.block.entity.inventory.ItemHandler;
 import com.chefsdelights.farmersrespite.common.block.KettleBlock;
 import com.chefsdelights.farmersrespite.common.block.entity.KettleBlockEntity;
+import com.chefsdelights.farmersrespite.common.block.entity.inventory.slot.SlotItemHandler;
 import com.chefsdelights.farmersrespite.core.FarmersRespite;
 import com.chefsdelights.farmersrespite.core.registry.FRBlocks;
 import com.chefsdelights.farmersrespite.core.registry.FRContainerTypes;
 import com.mojang.datafixers.util.Pair;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.ItemHandler;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.slot.SlotItemHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.FriendlyByteBuf;

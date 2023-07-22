@@ -18,7 +18,9 @@ bin/
 .project
 
 #fabric
-run/
+run/*
+!run/config/fabric_loader_dependencies.json
+!run/mods/
 production/
 
 #wth

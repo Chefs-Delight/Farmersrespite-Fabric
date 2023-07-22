@@ -1,17 +1,17 @@
 package com.chefsdelights.farmersrespite.common.block.entity;
 
+import com.chefsdelights.farmersrespite.common.block.entity.inventory.ItemHandler;
+import com.chefsdelights.farmersrespite.common.block.entity.inventory.ItemStackHandler;
 import com.chefsdelights.farmersrespite.common.block.KettleBlock;
 import com.chefsdelights.farmersrespite.common.block.entity.container.KettleContainer;
 import com.chefsdelights.farmersrespite.common.block.entity.inventory.KettlePotInventory;
+import com.chefsdelights.farmersrespite.common.block.entity.inventory.RecipeWrapper;
 import com.chefsdelights.farmersrespite.common.crafting.KettleRecipe;
 import com.chefsdelights.farmersrespite.core.FarmersRespite;
 import com.chefsdelights.farmersrespite.core.registry.FRBlockEntityTypes;
 import com.chefsdelights.farmersrespite.core.registry.FRRecipeSerializers;
 import com.nhoryzon.mc.farmersdelight.entity.block.HeatableBlockEntity;
 import com.nhoryzon.mc.farmersdelight.entity.block.SyncedBlockEntity;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.ItemHandler;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.ItemStackHandler;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.RecipeWrapper;
 import com.nhoryzon.mc.farmersdelight.mixin.accessors.RecipeManagerAccessorMixin;
 import com.nhoryzon.mc.farmersdelight.registry.ParticleTypesRegistry;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
