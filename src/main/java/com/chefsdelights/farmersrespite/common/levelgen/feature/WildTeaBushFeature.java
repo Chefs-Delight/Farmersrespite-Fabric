@@ -10,21 +10,21 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
 public class WildTeaBushFeature extends Feature<SimpleBlockConfiguration> {
-	public WildTeaBushFeature(Codec<SimpleBlockConfiguration> config) {
-		super(config);
-	}
+    public WildTeaBushFeature(Codec<SimpleBlockConfiguration> config) {
+        super(config);
+    }
 
-	@Override
-	public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
-		SimpleBlockConfiguration config = context.config();
-		WorldGenLevel level = context.level();
-		BlockState blockstate = FRBlocks.WILD_TEA_BUSH.defaultBlockState();
-		BlockPos pos = context.origin();
-		BlockState state = config.toPlace().getState(context.random(), pos);
-		if (state.canSurvive(level, pos)) {
-			level.setBlock(pos, blockstate, 19);
-			return true;
-		}
-		return false;
-	}
+    @Override
+    public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
+        SimpleBlockConfiguration config = context.config();
+        WorldGenLevel level = context.level();
+        BlockState blockstate = FRBlocks.WILD_TEA_BUSH.defaultBlockState();
+        BlockPos pos = context.origin();
+        BlockState state = config.toPlace().getState(context.random(), pos);
+        if (state.canSurvive(level, pos)) {
+            level.setBlock(pos, blockstate, 19);
+            return true;
+        }
+        return false;
+    }
 }

@@ -3,14 +3,12 @@ package com.chefsdelights.farmersrespite.common.item;
 import com.chefsdelights.farmersrespite.core.FarmersRespite;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffect;
@@ -34,7 +32,7 @@ public class ConsumableItem extends Item {
     private final boolean hasFoodEffectTooltip;
     private final boolean hasCustomTooltip;
 
-    private static final MutableComponent NO_EFFECTS = (new TranslatableComponent("effect.none")).withStyle(ChatFormatting.GRAY);
+    private static final MutableComponent NO_EFFECTS = (Component.translatable("effect.none")).withStyle(ChatFormatting.GRAY);
 
     public ConsumableItem(Item.Properties settings) {
         super(settings);
@@ -64,9 +62,8 @@ public class ConsumableItem extends Item {
         if (stack.isEdible()) {
             super.finishUsingItem(stack, world, user);
         } else if (user instanceof Player) {
-            player = (Player)user;
-            if (player instanceof ServerPlayer) {
-                ServerPlayer serverPlayer = (ServerPlayer)player;
+            player = (Player) user;
+            if (player instanceof ServerPlayer serverPlayer) {
                 CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             }
 
@@ -80,7 +77,7 @@ public class ConsumableItem extends Item {
             return container;
         } else {
             if (user instanceof Player) {
-                player = (Player)user;
+                player = (Player) user;
                 if (!player.getAbilities().instabuild && !player.getInventory().add(container)) {
                     player.drop(container, false);
                 }
@@ -94,18 +91,18 @@ public class ConsumableItem extends Item {
     }
 
     @Override
-    @Environment(value= EnvType.CLIENT)
+    @Environment(value = EnvType.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
         super.appendHoverText(stack, world, tooltip, context);
-            if (hasCustomTooltip) {
-                tooltip.add(FarmersRespite.i18n("tooltip." + this).withStyle(ChatFormatting.BLUE));
-            }
-            if (hasFoodEffectTooltip) {
-                addFoodEffectTooltip(stack, tooltip, 1.f);
+        if (hasCustomTooltip) {
+            tooltip.add(FarmersRespite.i18n("tooltip." + this).withStyle(ChatFormatting.BLUE));
+        }
+        if (hasFoodEffectTooltip) {
+            addFoodEffectTooltip(stack, tooltip, 1.f);
         }
     }
 
-    @Environment(value= EnvType.CLIENT)
+    @Environment(value = EnvType.CLIENT)
     public static void addFoodEffectTooltip(ItemStack itemIn, List<Component> lores, float durationFactor) {
         FoodProperties foodStats = itemIn.getItem().getFoodProperties();
         if (foodStats == null) {
@@ -118,7 +115,7 @@ public class ConsumableItem extends Item {
         } else {
             for (Pair<MobEffectInstance, Float> effectPair : effectList) {
                 MobEffectInstance instance = effectPair.getFirst();
-                MutableComponent iformattabletextcomponent = new TranslatableComponent(instance.getDescriptionId());
+                MutableComponent iformattabletextcomponent = Component.translatable(instance.getDescriptionId());
                 MobEffect effect = instance.getEffect();
                 Map<Attribute, AttributeModifier> attributeMap = effect.getAttributeModifiers();
                 if (!attributeMap.isEmpty()) {
@@ -131,11 +128,11 @@ public class ConsumableItem extends Item {
                 }
 
                 if (instance.getAmplifier() > 0) {
-                    iformattabletextcomponent = new TranslatableComponent("potion.withAmplifier", iformattabletextcomponent, new TranslatableComponent("potion.potency." + instance.getAmplifier()));
+                    iformattabletextcomponent = Component.translatable("potion.withAmplifier", iformattabletextcomponent, Component.translatable("potion.potency." + instance.getAmplifier()));
                 }
 
                 if (instance.getDuration() > 20) {
-                    iformattabletextcomponent = new TranslatableComponent("potion.withDuration", iformattabletextcomponent, MobEffectUtil.formatDuration
+                    iformattabletextcomponent = Component.translatable("potion.withDuration", iformattabletextcomponent, MobEffectUtil.formatDuration
                             (instance, durationFactor));
                 }
 
@@ -145,7 +142,7 @@ public class ConsumableItem extends Item {
 
         if (!attributeList.isEmpty()) {
             lores.add(Component.nullToEmpty(""));
-            lores.add((new TranslatableComponent("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
+            lores.add((Component.translatable("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
 
             for (Pair<Attribute, AttributeModifier> pair : attributeList) {
                 AttributeModifier modifier = pair.getSecond();
@@ -158,10 +155,10 @@ public class ConsumableItem extends Item {
                 }
 
                 if (amount > 0.0D) {
-                    lores.add((new TranslatableComponent("attribute.modifier.plus." + modifier.getOperation().name(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), new TranslatableComponent(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.BLUE));
+                    lores.add((Component.translatable("attribute.modifier.plus." + modifier.getOperation().name(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), Component.translatable(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.BLUE));
                 } else if (amount < 0.0D) {
                     formattedAmount = formattedAmount * -1.d;
-                    lores.add((new TranslatableComponent("attribute.modifier.take." + modifier.getOperation().name(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), new TranslatableComponent(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.RED));
+                    lores.add((Component.translatable("attribute.modifier.take." + modifier.getOperation().name(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), Component.translatable(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.RED));
                 }
             }
         }

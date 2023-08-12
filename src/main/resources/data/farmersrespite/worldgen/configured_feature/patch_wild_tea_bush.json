@@ -1,0 +1,11 @@
+{
+  "type": "farmersrespite:wild_tea_bush",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "farmersrespite:wild_tea_bush"
+      }
+    }
+  }
+}

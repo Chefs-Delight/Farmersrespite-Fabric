@@ -9,7 +9,8 @@ import java.util.Random;
 public final class MathUtils {
     public static final Random RAND = new Random();
 
-    public MathUtils() {}
+    public MathUtils() {
+    }
 
     public static int calcRedstoneFromItemHandler(Container inventory) {
         if (inventory == null) {

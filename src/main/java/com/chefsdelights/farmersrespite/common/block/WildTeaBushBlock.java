@@ -9,19 +9,19 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WildTeaBushBlock extends BushBlock {
-	   public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
+    public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
-	public WildTeaBushBlock(Properties properties) {
-		super(properties);
-	}
+    public WildTeaBushBlock(Properties properties) {
+        super(properties);
+    }
 
-	   @Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		 return SHAPE;
-	 }
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
+    }
 
-	@Override
-	 public boolean isRandomlyTicking(BlockState state) {
-		 return false;
-	 }
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return false;
+    }
 }

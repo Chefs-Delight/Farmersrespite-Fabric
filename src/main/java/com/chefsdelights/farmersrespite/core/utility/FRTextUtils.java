@@ -8,8 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
@@ -26,76 +24,76 @@ import java.util.Map;
  */
 
 public class FRTextUtils {
-	private static final MutableComponent NO_EFFECTS = (new TranslatableComponent("effect.none")).withStyle(ChatFormatting.GRAY);
+    private static final MutableComponent NO_EFFECTS = (Component.translatable("effect.none")).withStyle(ChatFormatting.GRAY);
 
-	/**
-	 * Syntactic sugar for custom translation keys. Always prefixed with the mod's ID in lang files (e.g. farmersdelight.your.key.here).
-	 */
-	public static MutableComponent getTranslation(String key, Object... args) {
-		return new TranslatableComponent(FarmersRespite.MOD_ID + "." + key, args);
-	}
+    /**
+     * Syntactic sugar for custom translation keys. Always prefixed with the mod's ID in lang files (e.g. farmersdelight.your.key.here).
+     */
+    public static MutableComponent getTranslation(String key, Object... args) {
+        return Component.translatable(FarmersRespite.MOD_ID + "." + key, args);
+    }
 
-	/**
-	 * An alternate version of PotionUtils.addPotionTooltip, that obtains the item's food-property potion effects instead.
-	 */
-	@Environment(EnvType.CLIENT)
-	public static void addFoodEffectTooltip(ItemStack itemIn, List<Component> lores, float durationFactor) {
-		FoodProperties foodStats = itemIn.getItem().getFoodProperties();
-		if (foodStats == null) {
-			return;
-		}
-		List<Pair<MobEffectInstance, Float>> effectList = foodStats.getEffects();
-		List<Pair<Attribute, AttributeModifier>> attributeList = Lists.newArrayList();
-		if (effectList.isEmpty()) {
-			lores.add(NO_EFFECTS);
-		} else {
-			for (Pair<MobEffectInstance, Float> effectPair : effectList) {
-				MobEffectInstance instance = effectPair.getFirst();
-				MutableComponent iformattabletextcomponent = new TranslatableComponent(instance.getDescriptionId());
-				MobEffect effect = instance.getEffect();
-				Map<Attribute, AttributeModifier> attributeMap = effect.getAttributeModifiers();
-				if (!attributeMap.isEmpty()) {
-					for (Map.Entry<Attribute, AttributeModifier> entry : attributeMap.entrySet()) {
-						AttributeModifier rawModifier = entry.getValue();
-						AttributeModifier modifier = new AttributeModifier(rawModifier.getName(), effect.getAttributeModifierValue(instance.getAmplifier(), rawModifier), rawModifier.getOperation());
-						attributeList.add(new Pair<>(entry.getKey(), modifier));
-					}
-				}
+    /**
+     * An alternate version of PotionUtils.addPotionTooltip, that obtains the item's food-property potion effects instead.
+     */
+    @Environment(EnvType.CLIENT)
+    public static void addFoodEffectTooltip(ItemStack itemIn, List<Component> lores, float durationFactor) {
+        FoodProperties foodStats = itemIn.getItem().getFoodProperties();
+        if (foodStats == null) {
+            return;
+        }
+        List<Pair<MobEffectInstance, Float>> effectList = foodStats.getEffects();
+        List<Pair<Attribute, AttributeModifier>> attributeList = Lists.newArrayList();
+        if (effectList.isEmpty()) {
+            lores.add(NO_EFFECTS);
+        } else {
+            for (Pair<MobEffectInstance, Float> effectPair : effectList) {
+                MobEffectInstance instance = effectPair.getFirst();
+                MutableComponent iformattabletextcomponent = Component.translatable(instance.getDescriptionId());
+                MobEffect effect = instance.getEffect();
+                Map<Attribute, AttributeModifier> attributeMap = effect.getAttributeModifiers();
+                if (!attributeMap.isEmpty()) {
+                    for (Map.Entry<Attribute, AttributeModifier> entry : attributeMap.entrySet()) {
+                        AttributeModifier rawModifier = entry.getValue();
+                        AttributeModifier modifier = new AttributeModifier(rawModifier.getName(), effect.getAttributeModifierValue(instance.getAmplifier(), rawModifier), rawModifier.getOperation());
+                        attributeList.add(new Pair<>(entry.getKey(), modifier));
+                    }
+                }
 
-				if (instance.getAmplifier() > 0) {
-					iformattabletextcomponent = new TranslatableComponent("potion.withAmplifier", iformattabletextcomponent, new TranslatableComponent("potion.potency." + instance.getAmplifier()));
-				}
+                if (instance.getAmplifier() > 0) {
+                    iformattabletextcomponent = Component.translatable("potion.withAmplifier", iformattabletextcomponent, Component.translatable("potion.potency." + instance.getAmplifier()));
+                }
 
-				if (instance.getDuration() > 20) {
-					iformattabletextcomponent = new TranslatableComponent("potion.withDuration", iformattabletextcomponent, MobEffectUtil.formatDuration(instance, durationFactor));
-				}
+                if (instance.getDuration() > 20) {
+                    iformattabletextcomponent = Component.translatable("potion.withDuration", iformattabletextcomponent, MobEffectUtil.formatDuration(instance, durationFactor));
+                }
 
-				lores.add(iformattabletextcomponent.withStyle(effect.getCategory().getTooltipFormatting()));
-			}
-		}
+                lores.add(iformattabletextcomponent.withStyle(effect.getCategory().getTooltipFormatting()));
+            }
+        }
 
-		if (!attributeList.isEmpty()) {
-			lores.add(TextComponent.EMPTY);
-			lores.add((new TranslatableComponent("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
+        if (!attributeList.isEmpty()) {
+            lores.add(Component.empty());
+            lores.add((Component.translatable("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
 
-			for (Pair<Attribute, AttributeModifier> pair : attributeList) {
-				AttributeModifier modifier = pair.getSecond();
-				double amount = modifier.getAmount();
-				double formattedAmount;
-				if (modifier.getOperation() != AttributeModifier.Operation.MULTIPLY_BASE && modifier.getOperation() != AttributeModifier.Operation.MULTIPLY_TOTAL) {
-					formattedAmount = modifier.getAmount();
-				} else {
-					formattedAmount = modifier.getAmount() * 100.0D;
-				}
+            for (Pair<Attribute, AttributeModifier> pair : attributeList) {
+                AttributeModifier modifier = pair.getSecond();
+                double amount = modifier.getAmount();
+                double formattedAmount;
+                if (modifier.getOperation() != AttributeModifier.Operation.MULTIPLY_BASE && modifier.getOperation() != AttributeModifier.Operation.MULTIPLY_TOTAL) {
+                    formattedAmount = modifier.getAmount();
+                } else {
+                    formattedAmount = modifier.getAmount() * 100.0D;
+                }
 
-				if (amount > 0.0D) {
-					lores.add((new TranslatableComponent("attribute.modifier.plus." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), new TranslatableComponent(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.BLUE));
-				} else if (amount < 0.0D) {
-					formattedAmount = formattedAmount * -1.0D;
-					lores.add((new TranslatableComponent("attribute.modifier.take." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), new TranslatableComponent(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.RED));
-				}
-			}
-		}
+                if (amount > 0.0D) {
+                    lores.add((Component.translatable("attribute.modifier.plus." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), Component.translatable(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.BLUE));
+                } else if (amount < 0.0D) {
+                    formattedAmount = formattedAmount * -1.0D;
+                    lores.add((Component.translatable("attribute.modifier.take." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(formattedAmount), Component.translatable(pair.getFirst().getDescriptionId()))).withStyle(ChatFormatting.RED));
+                }
+            }
+        }
 
-	}
+    }
 }
