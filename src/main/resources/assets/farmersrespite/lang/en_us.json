@@ -102,6 +102,6 @@
   "farmersrespite.rei.brewing.noWater": "No water required",
   "farmersrespite.rei.brewing.needWater": "Requires 1 glass of water",
 
-  "farmersrespite.group.main": "Farmer's Respite"
-
+  "farmersrespite.group.main": "Farmer's Respite",
+  "emi.category.farmersrespite.brewing": "Brewing"
 }

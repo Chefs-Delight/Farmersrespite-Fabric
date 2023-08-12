@@ -33,6 +33,9 @@
     ],
     "rei_client": [
       "com.chefsdelights.farmersrespite.integration.rei.REIPlugin"
+    ],
+    "emi": [
+      "com.chefsdelights.farmersrespite.integration.emi.EMIPlugin"
     ]
   },
   "mixins": [
