@@ -31,8 +31,11 @@
     "client": [
       "com.chefsdelights.farmersrespite.client.FRClientSetup"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "com.chefsdelights.farmersrespite.integration.rei.REIPlugin"
+    ],
+    "emi": [
+      "com.chefsdelights.farmersrespite.integration.emi.EMIPlugin"
     ]
   },
   "mixins": [
@@ -43,7 +46,7 @@
   "depends": {
     "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.18.2",
+    "minecraft": ">=1.20.1",
     "java": ">=17",
     "forgeconfigapiport": "*"
   },

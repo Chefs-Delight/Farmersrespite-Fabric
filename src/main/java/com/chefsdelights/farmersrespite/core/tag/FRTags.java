@@ -7,14 +7,14 @@ import net.minecraft.world.item.Item;
 
 public class FRTags {
 
-	public FRTags() {
-		super();
-	}
-	
-	// Tea Leaves
-	public static final TagKey<Item> TEA_LEAVES = modItemTag("tea_leaves");
+    public FRTags() {
+        super();
+    }
 
-	private static TagKey<Item> modItemTag(String path) {
-		return ItemTags.bind(FarmersRespite.MOD_ID + ":" + path);
-	}
+    // Tea Leaves
+    public static final TagKey<Item> TEA_LEAVES = modItemTag("tea_leaves");
+
+    private static TagKey<Item> modItemTag(String path) {
+        return ItemTags.bind(FarmersRespite.MOD_ID + ":" + path);
+    }
 }

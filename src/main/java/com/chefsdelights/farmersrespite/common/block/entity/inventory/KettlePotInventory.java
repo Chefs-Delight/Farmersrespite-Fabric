@@ -2,7 +2,6 @@ package com.chefsdelights.farmersrespite.common.block.entity.inventory;
 
 import com.chefsdelights.farmersrespite.common.block.entity.KettleBlockEntity;
 import com.nhoryzon.mc.farmersdelight.entity.block.CookingPotBlockEntity;
-import com.nhoryzon.mc.farmersdelight.entity.block.inventory.ItemStackHandler;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
